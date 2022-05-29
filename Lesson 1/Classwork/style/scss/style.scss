@@ -1,0 +1,47 @@
+@import "./reset";
+
+body {
+	background-color: #745d49;
+}
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 75px 0;
+}
+.header,
+.main,
+nav,
+section,
+footer {
+	background-color: #fff;
+}
+.header {
+	height: 200px;
+	border: 5px solid rgb(243, 72, 5);
+	border-bottom: none;
+}
+.main {
+	display: flex;
+}
+.nav {
+	width: 100px;
+	height: 400px;
+	border: 5px solid orange;
+	border-bottom: none;
+}
+.section {
+	flex-grow: 1;
+	height: 400px;
+	padding-top: 35px;
+	border-right: 5px solid orange;
+	border-top: 5px solid orange;
+	font-size: 3rem;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.footer {
+	height: 200px;
+	width: 100%;
+	border: 5px solid rgb(55, 226, 55);
+}
