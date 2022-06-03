@@ -40,6 +40,7 @@ while (True) {
 let sum = 0, sumPrint = '', odd = '', numberQuantity = b - a - 1;
 a = Number(a);
 b = Number(b);
+document.write('<main class="main">');
 document.write('<div class="block">');
 document.write(`<h4>Числовий проміжок від ${a} до ${b}</h4>`);
 document.write('<h4>Кількість чисел: ' + numberQuantity + ';' + '</h4>');
@@ -59,10 +60,53 @@ document.write(`<h4>Усі непарні числа: ${odd}</h4>`);
 document.write('</div>');
 
 document.write('<div class="rectangle">');
-for (let i = 0; i < 30; i++) {
-	for (let j = 0; j < 110; j++) {
+document.write('<h5>Прямокутник</h5>');
+for (let i = 0; i < 10; i++) {
+	for (let j = 0; j < 40; j++) {
 		document.write('*');
 	}
 	document.write('<br>');
 }
 document.write('</div>');
+
+document.write('<div class="equilateral__triangle">');
+document.write('<h5>Рівносторонній трикутник</h5>');
+myTriangle();
+document.write('</div>');
+
+document.write('<div class="right__triangle">');
+document.write('<h5>Прямокутний трикутник</h5>');
+myTriangle();
+document.write('</div>');
+
+document.write('<div class="rhombus">');
+document.write('<h5>Ромб</h5>');
+myRhombus();
+document.write('</div>');
+
+document.write('</main>');
+
+
+function myTriangle() {
+	for (let i = 1; i <= 15; i++) {
+		for (let j = 1; j <= i; j++) {
+			document.write('*');
+		}
+		document.write('<br>');
+	}
+}
+function myRhombus() {
+	for (let i = 1; i <= 10; i++) {
+		for (let j = 1; j <= i; j++) {
+			document.write('*');
+
+		}
+		document.write('<br>');
+	}
+	for (let i = 10; i >= 1; i--) {
+		for (let j = 1; j <= i; j++) {
+			document.write('*');
+		}
+		document.write('<br>');
+	}
+}
