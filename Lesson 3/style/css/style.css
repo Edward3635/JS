@@ -75,3 +75,86 @@ html {
 body {
   background-color: #745d49;
 }
+
+.main {
+  padding: 50px 0;
+}
+
+.main .main__content {
+  padding: 50px 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffdab9;
+}
+
+.main .ul__homework {
+  padding: 20px 0;
+}
+
+.main li {
+  padding: 10px 0;
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.main .ul__additional-work {
+  padding: 25px 0;
+}
+
+.main .ul__additional-work > li:nth-child(even),
+.main .ul__additional-work > li:first-child {
+  font-weight: 600;
+}
+
+.main .arr__img1 {
+  height: 200px;
+  background: url(../../img/img2.png);
+}
+
+.main .arr__img2 {
+  height: 210px;
+  background: url(../../img/img1.png);
+}
+
+.main .arr__img1,
+.main .arr__img2 {
+  background-size: cover;
+  margin-top: 30px;
+}
+
+.span__underline {
+  text-decoration: underline;
+}
+
+.second__line,
+.li__objects,
+.li__nesting {
+  padding-top: 10px;
+  display: block;
+}
+
+.li__objects {
+  padding-left: 32px;
+}
+
+.li__nesting {
+  padding-left: 65px;
+}
+
+.span__red {
+  background-color: red;
+  max-width: fit-content;
+  padding-top: 0;
+}
+
+.paragraph {
+  padding-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: 600;
+}
