@@ -16,7 +16,7 @@ body {
 		margin: 0 auto;
 		background-color: #ffdab9;
 	}
-	.ul__homework {
+	.ol__homework {
 		padding: 20px 0;
 	}
 	li {
@@ -25,11 +25,26 @@ body {
 		font-size: 2rem;
 		font-weight: 400;
 	}
-	.ul__additional-work {
+	.ol__additional-work {
+		list-style-type: none;
+		counter-reset: li;
 		padding: 25px 0;
 		> li:nth-child(even),
 		> li:first-child {
 			font-weight: 600;
+		}
+		> li:nth-child(even) {
+			position: relative;
+			&::before {
+				display: inline-block;
+				content: counter(li) ".";
+				counter-increment: li 1;
+				padding: 0px 6px;
+				margin-left: -35px;
+				text-align: left;
+				font-size: 20px;
+				position: absolute;
+			}
 		}
 	}
 	.arr__img1 {

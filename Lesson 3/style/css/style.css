@@ -87,7 +87,7 @@ body {
   background-color: #ffdab9;
 }
 
-.main .ul__homework {
+.main .ol__homework {
   padding: 20px 0;
 }
 
@@ -98,13 +98,30 @@ body {
   font-weight: 400;
 }
 
-.main .ul__additional-work {
+.main .ol__additional-work {
+  list-style-type: none;
+  counter-reset: li;
   padding: 25px 0;
 }
 
-.main .ul__additional-work > li:nth-child(even),
-.main .ul__additional-work > li:first-child {
+.main .ol__additional-work > li:nth-child(even),
+.main .ol__additional-work > li:first-child {
   font-weight: 600;
+}
+
+.main .ol__additional-work > li:nth-child(even) {
+  position: relative;
+}
+
+.main .ol__additional-work > li:nth-child(even)::before {
+  display: inline-block;
+  content: counter(li) ".";
+  counter-increment: li 1;
+  padding: 0px 6px;
+  margin-left: -35px;
+  text-align: left;
+  font-size: 20px;
+  position: absolute;
 }
 
 .main .arr__img1 {

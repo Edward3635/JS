@@ -2,7 +2,7 @@ const styles = ['Джаз', 'Блюз'];
 document.write('<main class="main">');
 document.write('<div class="main__content">');
 document.write('<h2>Домашня робота</h2>');
-document.write('<ul class="ul__homework">');
+document.write('<ol class="ol__homework">');
 document.write("<li>Створено масив: [ '" + styles.join("', '") + "' ]</li>");
 
 styles.push('Рок-н-ролл');
@@ -28,11 +28,11 @@ styles.splice(0, 0, 'Реп', 'Реггі');
 
 document.write('<li>Додаємо 2 нових елементи на початок масиву: ' + styles[0] + ' та ' + styles[1] + '</li>');
 document.write("<li>Змінений масив: [ '" + styles.join("', '") + "' ]</li>");
-document.write('</ul>');
+document.write('</ol>');
 
 
 document.write('<h2>Додаткові завдання</h2>');
-document.write('<ul class="ul__additional-work">');
+document.write('<ol class="ol__additional-work">');
 document.write("<li>Нижче будуть використовуватися масиви const arrLetters = ['a', 'b', 'c'] <br>" +
 	'та const arrNumbers =[1, 2, 3]</li>');
 
@@ -127,8 +127,15 @@ document.write('<li>var arr = {' +
 
 document.write("<li>Создайте массив arr = ['a', 'b', 'c', 'd'] и с его помощью выведите на экран строку 'a+b, c+d'.</li>");
 const myArr = ['a', 'b', 'c', 'd'];
+let sliceArr1 = myArr.slice(0, 2);
+let sliceArr2 = myArr.slice(2);
 
-document.write("<li>const myArr = ['a', 'b', 'c', 'd'];" + '</li>');
+document.write("<li>const myArr = ['a', 'b', 'c', 'd'];" +
+	'<div class="second__line">let sliceArr1 = myArr.slice(0, 2);</div>' +
+	'<div class="second__line">let sliceArr2 = myArr.slice(2);</div>' +
+	'<div class="second__line">' + "document.write(sliceArr1.join('+'), ', ' + sliceArr2.join('+')): " +
+	sliceArr1.join('+'), ', ' + sliceArr2.join('+') + '</div>' +
+'</li>');
 
 document.write('<li>Запросите у пользователя количество элементов массива. Исходя из данных которые ввел пользователь создайте массив на то количество элементов которое передал пользователь. В каждом индексе массива храните чило которе будет показывать номер элемента массива.</li>');
 let amountNumbers = eternalPrompt();
@@ -175,7 +182,7 @@ document.write('<li>' + "var vegetables = ['Капуста', 'Репа', 'Ред
 	'<div class="second__line">document.write(str1): ' + str1 + ';</div>' +
 '</li>');
 
-document.write('</ul>');
+document.write('</ol>');
 document.write('</div>');
 document.write('</main>');
 
