@@ -1,4 +1,5 @@
 //classwork
+
 //calculator
 let a, b, operator;
 for (; ;) {
@@ -20,20 +21,22 @@ for (; ;) {
 	}
 }
 
+//function call
 calculate(a, b, operator);
 
+// '+'
 function add(a = 0, b = 0) {
 	return Number(a) + Number(b);
 }
-
+// '-' 
 function minus(a = 0, b = 0) {
 	return a - b;
 }
-
+// '*'
 function multiply(a = 0, b = 0) {
 	return a * b;
 }
-
+// '/'
 function division(a = 0, b = 0) {
 	return a / b;
 }
@@ -59,13 +62,27 @@ function calculate(a, b, fn) {
 }
 
 //homework
+
 //task 1
-function map(fn, array) {
-	let myVariable = array.fn();
-	return myVariable;
+let myArr = [5, 2, 7, 10, 11, 4];
+console.log(map(arrSortCall, myArr));
+function arrSort(a, b) {
+	if (a > b) return 1;
+	if (a == b) return 0;
+	if (a < b) return -1;
 }
-let myArr = [1, 2, 3, 4, 5, 6];
-console.log(map(myArr));
+function arrSortCall(arr) {
+	return arr.sort(arrSort);
+}
+
+function map(fn, array) {
+	if (Array.isArray(array) === true) {
+		let copyArr = array.slice(0);
+		return fn(copyArr);
+	} else {
+		return console.log('Першим аргументом має бути функція, а другим - масив!');
+	}
+}
 
 //task 2.1
 const checkAge = age => age > 18 ? true : confirm('Батьки дозволили?');
