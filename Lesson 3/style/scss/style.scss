@@ -39,9 +39,9 @@ body {
 				display: inline-block;
 				content: counter(li) ".";
 				counter-increment: li 1;
-				padding: 0px 6px;
 				margin-left: -35px;
-				text-align: left;
+				text-align: right;
+				width: 25px;
 				font-size: 20px;
 				position: absolute;
 			}
