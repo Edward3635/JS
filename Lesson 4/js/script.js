@@ -67,18 +67,21 @@ function calculate(a, b, fn) {
 //task 1
 let myArr = [5, 2, 7, 10, 11, 4];
 console.log(map(arrSortCall, myArr));
+//Зробив сортування масиву, бо стандартне сортування неправильне
+//Як раз і буде функцією, що проходить по кожному елементу масиву
 function arrSort(a, b) {
 	if (a > b) return 1;
 	if (a == b) return 0;
 	if (a < b) return -1;
 }
+//Виклик функції
 function arrSortCall(arr) {
 	return arr.sort(arrSort);
 }
 
 function map(fn, array) {
-	if (Array.isArray(array) === true) {
-		let copyArr = array.slice(0);
+	if (Array.isArray(array) === true) { //Перевірка на масив
+		let copyArr = array.slice(0); //Копіюю даний масив, щоб потім повернути новий
 		return fn(copyArr);
 	} else {
 		return console.log('Першим аргументом має бути функція, а другим - масив!');
@@ -246,7 +249,8 @@ exclamationFunc(a, ggg);
 //calculator уже був написаний вище, як класна робота  ^_^
 //task 7
 function ggg2(a, b) {
-	return a() + b();
+	let res = a() + ' + ' + b() + ' = ' + (a() + b());
+	return res;
 }
 console.log(
 	ggg2(
