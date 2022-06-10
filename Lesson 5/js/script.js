@@ -72,7 +72,7 @@ const cryptoWallet = {
 	myFunc: function func(cryptoName) {
 		let x = (` Добрий день ${this.name}, на вашому балансі ${this[cryptoName].balance}${this[cryptoName].logo},
 		якщо продасте їх, то отримаєте ${this[cryptoName].balance * this[cryptoName].exchange} грн.`);
-		document.getElementsByClassName('classwork__tasks')[0].innerHTML = x;
+		document.getElementsByClassName('classwork__task')[0].innerHTML = x;
 	}
 
 };
