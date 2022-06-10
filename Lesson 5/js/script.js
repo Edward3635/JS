@@ -3,7 +3,7 @@ let myDocument = {
 	body: '',
 	footer: 0,
 	data: '',
-	'Приложение': {
+	Приложение: {
 		header: { navigation: '', search: '', burger: '' },
 		body: { main: '', container: '', content: '' },
 		footer: { container: '', content: '', contact: '' },
@@ -29,20 +29,52 @@ function fillObject(obj) {
 		return "Аргументом функції fillObjects має бути об'єкт";
 	}
 }
-console.log(fillObject(myDocument)); //виклик функції
-document.getElementsByClassName('main__content')[0].innerHTML = test(myDocument);
-
-function test(obj) {
-	let i = '', j = '', c = '';
+//Функція відображення обьекту
+function display(obj) {
+	let i = '';
 	for (const key in obj) {
 		if (typeof obj[key] === 'object') {
-			c += key + ': ';
-			test(obj[key]);
+			i += `${key}: <br> ${display(obj[key])} <br>`;
 		} else {
-			i = key + ': ';
-			j = obj[key] + ';<br>';
-			c += i + j;
+			i += `${key}: ${obj[key]}; `;
 		}
 	}
-	return c;
+	return i;
 }
+
+
+
+console.log(fillObject(myDocument)); //виклик функції, що заповнює ключі обьекту, в консольку
+document.getElementsByClassName('main__content')[0].innerHTML = display(myDocument); //Знаходимо елемент html по класу і додаємо
+// туди текст, оброблений через функцію display(obj)
+
+
+const cryptoWallet = {
+	name: prompt("Вкажіть ім'я", 'Борис'),
+	Bitcoin: {
+		name: 'Біток',
+		logo: '<img src="./img/bit.png" width=30px alt="logo">',
+		balance: 1,
+		exchange: 890655.18
+	},
+	Ethernum: {
+		name: 'Етернум',
+		logo: '<img src="./img/eth.png"  width=30px alt="logo">',
+		balance: 26,
+		exchange: 52635.92
+	},
+	Stellar: {
+		name: 'Стелар',
+		logo: '<img src="./img/st.png"  width=30px alt="logo">',
+		balance: 524,
+		exchange: 4
+	},
+	myFunc: function func(cryptoName) {
+		let x = (` Добрий день ${this.name}, на вашому балансі ${this[cryptoName].balance}${this[cryptoName].logo},
+		якщо продасте їх, то отримаєте ${this[cryptoName].balance * this[cryptoName].exchange} грн.`);
+		document.getElementsByClassName('classwork__tasks')[0].innerHTML = x;
+	}
+
+};
+cryptoWallet.myFunc(prompt('Введіть валюту: Bitcoin, Stellar, Ethernum', 'Stellar'));
+

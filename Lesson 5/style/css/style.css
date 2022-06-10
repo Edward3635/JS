@@ -75,7 +75,7 @@ html {
 body {
   font-weight: 400;
   font-size: 2rem;
-  line-height: 1.25;
+  line-height: 1.55;
   background-color: #745d49;
 }
 
@@ -85,6 +85,25 @@ body {
   padding: 50px 0;
 }
 
-.main__content {
-  text-align: center;
+.body {
+  padding: 25px 50px;
+  max-width: fit-content;
+  margin: 0 auto;
+  background-color: #ffdab9;
+}
+
+.body .homework {
+  font-weight: 600;
+}
+
+.body .homework .span__hw {
+  font-weight: 400;
+}
+
+.body .classwork {
+  font-weight: 600;
+}
+
+.body .classwork .classwork__tasks {
+  font-weight: 400;
 }
