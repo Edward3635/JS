@@ -8,10 +8,10 @@ Calculator.prototype.read = function () {
 	this.x = Number(prompt('Перше значення: ', this.x));
 	this.y = Number(prompt('Друге значення: ', this.y));
 };
-Calculator.prototype.sum = function (x, y) {
+Calculator.prototype.sum = function () {
 	return this.x + this.y;
 };
-Calculator.prototype.mul = function (x, y) {
+Calculator.prototype.mul = function () {
 	return this.x * this.y;
 };
 const calc = new Calculator();
