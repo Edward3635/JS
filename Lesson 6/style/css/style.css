@@ -75,17 +75,3 @@ html {
 body {
   background-color: #745d49;
 }
-
-.main {
-  padding-top: 70px;
-}
-
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  background-color: #ffdab9;
-}
-
-.main__content {
-  height: 500px;
-}
