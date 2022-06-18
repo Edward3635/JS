@@ -69,9 +69,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html {
-  font-size: 30px;
+  font-size: 10px;
 }
 
 body {
   background-color: #745d49;
+}
+
+.main {
+  padding-top: 70px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffdab9;
+}
+
+.main__content {
+  height: 500px;
 }
