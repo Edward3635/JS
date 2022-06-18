@@ -1,26 +1,36 @@
 // Classwork
 
+// Функція-конструктор Calculator
 function Calculator(x = 2, y = 15) {
 	this.x = x;
 	this.y = y;
 }
 Calculator.prototype.read = function () {
-	this.x = Number(prompt('Перше значення: ', this.x));
-	this.y = Number(prompt('Друге значення: ', this.y));
+	alert('Вітаю у калькуляторі! \nБудь ласка введіть 2 будь-яких числа, для виконання подальших операцій над ними.');
+
+	this.x = Number(prompt('Перше число: ', this.x));
+	this.y = Number(prompt('Друге число: ', this.y));
+	alert('Дякую! Результати знаходяться у консолі.');
+
 };
 Calculator.prototype.sum = function () {
-	return this.x + this.y;
+	let x = this.x, y = this.y, res = `Сума: ${x} + ${y} = ${x + y}`;
+	return res;
 };
 Calculator.prototype.mul = function () {
-	return this.x * this.y;
+	let x = this.x, y = this.y, res = `Добуток: ${x} * ${y} = ${x * y}`;
+	return res;
 };
-const calc = new Calculator();
+let calc = new Calculator();
 calc.read();
 console.log(calc.sum());
 console.log(calc.mul());
+console.log('');
+
 
 // Homework 1.1
-// Функція-конструктор
+
+// Функція-конструктор Human
 function Human(name = 'Jennifer', gender = 'female', age = 45) {
 	// Це все властивості рівня екземпляр, вони дублюються в кожному екземплярі конструктора Human
 	this.name = name;
@@ -45,6 +55,7 @@ function sortByAge(arr) {
 }
 
 // Homework 1.2
+
 // Функція-конструктор, що створює об'єкт Human вже існує
 // Методи рівня екземпляру будуть дублюватися в усіх об'єктах, створених через функцію і займатимуть багато пам'яті.
 // Тому усі методи виносяться за межі конструктора і потім викликається той чи інший метод
