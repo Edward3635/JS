@@ -2,7 +2,7 @@
 
 const words = ['apple', 'banana', 'pineapple', 'plum', 'grape', 'orange'];
 
-//startGame();
+startGame();
 
 function startGame() {
 	let start = confirm('Привет!\nЭто игра Виселица и тебе нужно отгадать загаданное мною слово. Играешь?');
@@ -113,12 +113,30 @@ class CreateNewUser {
 		return `${this.firstName.charAt(0).toLocaleLowerCase()}${this.lastName.toLocaleLowerCase()}`;
 	}
 	getAge() {
-		return new Date().getFullYear() - this.birthday.split('.')[2];
+
+		let birthday = this.birthday.split('.');
+
+		function calcAge(yearBirthday) {
+			let age = new Date().getFullYear() - yearBirthday;
+			if (new Date().getMonth() + 1 > birthday[1]) {
+				return age;
+			} else if (new Date().getMonth() + 1 < birthday[1]) {
+				return age - 1;
+			} else {
+				if (new Date().getDate() >= birthday[0]) {
+					return age;
+				}
+				else if (new Date().getDate() < birthday[0]) {
+					return age - 1;
+				}
+			}
+		}
+		return calcAge(birthday[2]);
 	}
 	getPassword() {
 		let firstLetter = this.firstName.charAt(0).toLocaleUpperCase(),
-			lastName = this.lastName.toLocaleLowerCase(), yeatBirthday = this.birthday.split('.')[2];
-		return ` Your password is '${firstLetter}${lastName}${yeatBirthday}'`;
+			lastName = this.lastName.toLocaleLowerCase(), yearBirthday = this.birthday.split('.')[2];
+		return ` Your password is '${firstLetter}${lastName}${yearBirthday}'`;
 	}
 }
 const newUser = new CreateNewUser(prompt('First name:', 'Lucas'), prompt('Last name:', 'Wong'),
