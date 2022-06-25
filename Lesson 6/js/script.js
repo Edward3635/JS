@@ -10,6 +10,7 @@ Calculator.prototype.read = function () {
 
 	this.x = Number(prompt('Перше число: ', this.x));
 	this.y = Number(prompt('Друге число: ', this.y));
+
 	alert('Дякую! Результати знаходяться у консолі.');
 
 };
@@ -21,6 +22,7 @@ Calculator.prototype.mul = function () {
 	let x = this.x, y = this.y, res = `Добуток: ${x} * ${y} = ${x * y}`;
 	return res;
 };
+
 let calc = new Calculator();
 calc.read();
 console.log(calc.sum());
