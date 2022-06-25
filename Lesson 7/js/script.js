@@ -104,16 +104,28 @@ function game() {
 Вывести в консоль результат работы функции createNewUser(), а также функций getAge() и getPassword() созданного объекта.
 */
 class CreateNewUser {
-	constructor(firstName, lastName) {
+	constructor(firstName, lastName, birthday) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.birthday = birthday;
 	}
 	getLogin() {
 		return `${this.firstName.charAt(0).toLocaleLowerCase()}${this.lastName.toLocaleLowerCase()}`;
 	}
+	getAge() {
+		return new Date().getFullYear() - this.birthday.split('.')[2];
+	}
+	getPassword() {
+		let firstLetter = this.firstName.charAt(0).toLocaleUpperCase(),
+			lastName = this.lastName.toLocaleLowerCase(), yeatBirthday = this.birthday.split('.')[2];
+		return ` Your password is '${firstLetter}${lastName}${yeatBirthday}'`;
+	}
 }
-const newUser = new CreateNewUser(prompt('First name:', 'Lucas'), prompt('Last name:', 'Bah'));
+const newUser = new CreateNewUser(prompt('First name:', 'Lucas'), prompt('Last name:', 'Wong'),
+	prompt('Your birthday (dd.mm.yyy):', '04.10.2001'));
 console.log(newUser.getLogin());
+console.log(newUser.getAge());
+console.log(newUser.getPassword());
 
 
 /* 4.
@@ -125,4 +137,12 @@ console.log(newUser.getLogin());
 То есть, если передать массив ['hello', 'world', 23, '23', null],
 и вторым аргументом передать 'string', то функция вернет массив [23, null].
 */
+
+function filterBy(arr, dataType) {
+	arr = arr.filter(item => typeof (item) !== dataType);
+	return arr;
+}
+const myArray = [1, 'tower', 3, 4, 'castle', 6, 'heaven', 8];
+console.log(`Массив до фильтрации: ${myArray}`);
+console.log(`Массив после фильтрации: ${filterBy(myArray, 'number')}`);
 
