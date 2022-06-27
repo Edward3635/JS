@@ -3,18 +3,22 @@
 const words = ['feign', 'appointment', 'attract', 'expectation', 'bitter', 'soil', 'expenditure', 'obscure',
 	'warning', 'formal', 'roll', 'chimney', 'waterfall', 'funny', 'fur', 'opposite', 'excitement', 'depressed', 'outlook'], btnPrepend = document.querySelector('.btn__prepend'), btnCircle = document.querySelector('.btn__circle');
 
+// Лічильники
 let divCounter = 0, circleCounter = 0, liCounter = 0;
 // При натисканні на кнопку = виконання функції
 btnPrepend.onclick = prependDiv;
 
+// Функція на додавання блоків <div>
 function prependDiv() {
 	if (divCounter < 10) {
 		const divs = document.querySelector('.created__blocks'),
 			div = document.createElement('div');
+		// алгоритм вибору слова з масиву через random
 		div.innerHTML = words[Math.floor(Math.random() * words.length)];
 		divs.prepend(div);
 		divCounter++;
 	} else {
+		// Коли кількість > 10  то видаляємо все
 		const div = document.querySelector('.created__blocks');
 
 		while (div.firstElementChild) {
@@ -45,20 +49,27 @@ const rootId = document.querySelector('#root');
 rootId.innerHTML += '<table><caption>Курс Валюти</caption>' +
 	'<thead><tr><th>Валюта</th><th>Покупка</th><th>Продажа</th></tr></thead><tbody></tbody></table>';
 
+// Перебір елементів масиву, і знаходимо необхідні дані
+// А також виклик функції виводу
 data.forEach(item => {
 	let text = [item.currency, item.saleRate.toFixed(2), item.purchaseRate.toFixed(2)];
 	output(text);
 
 });
 
+// Функція виводу даних в таблицю
 function output(arg) {
 	const rootId = document.querySelector('tbody');
 	rootId.innerHTML += `<tr><td>${arg[0]}</td><td>${arg[1]}</td><td>${arg[2]}</td></tr>`;
 }
 
+// Додаткова задача на 100 кругів розмірністю 10х10
+// Відслідковуємо клік на кнопку і викликаємо функцію
 btnCircle.onclick = showInputCircle;
 function showInputCircle() {
+	// true та false необхідні для зміни відображення кнопки, вона "подвійна"
 	if (circleCounter == false) {
+		// Коли false - показуємо input
 		const neighbor = document.querySelector('.btn__circle'),
 			showInput = document.createElement('div');
 		showInput.classList.add('input__diameter');
@@ -68,6 +79,7 @@ function showInputCircle() {
 		circleCounter++;
 	} else {
 		const circleInputValue = document.querySelector('.circle__input').value;
+		// Перевірка вводу регулярним виразом
 		if (circleInputValue.replace(/\D/, '')) {
 			const neighbor = document.querySelector('.btn__circle');
 			neighbor.previousElementSibling.remove();
@@ -80,6 +92,7 @@ function showInputCircle() {
 		}
 	}
 }
+// Функція малювання кругів із значенням діаметру, взятим із input різними кольорами
 function drawCircle(diameter) {
 	const neighbor = document.querySelector('#root'),
 		ul = document.createElement('ul');
@@ -102,13 +115,16 @@ function drawCircle(diameter) {
 
 
 }
-
+// Видалення певного круга на клік
 function deleteCircle() {
 	let ul = document.querySelector('.ul__circle');
-
+	// Слікування за подією
 	ul.addEventListener('click', e => {
+		// видалення круга, який натиснули
 		ul.removeChild(e.target);
+		// за кожний видалений круг збільшуємо каунтер
 		liCounter++;
+		// Коли каунтер = 100, видаляємо пустий список.
 		if (liCounter === 100) {
 			ul.remove();
 		}
