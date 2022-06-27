@@ -75,3 +75,139 @@ html {
 body {
   background-color: #745d49;
 }
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 35px;
+}
+
+.buttons {
+  align-self: center;
+}
+
+.buttons .btn__prepend,
+.buttons .btn__circle {
+  display: block;
+  width: 180px;
+  height: 60px;
+  padding: 10px;
+  border: 2px solid brown;
+  font-size: 2rem;
+  font-weight: 600;
+  transition: all 0.25s;
+  background-color: sandybrown;
+}
+
+.buttons .btn__prepend:hover,
+.buttons .btn__circle:hover {
+  background: red;
+  color: #fff;
+  transition: all 0.25s;
+}
+
+.buttons .btn__prepend:active,
+.buttons .btn__circle:active {
+  transform: scale(1.01, 1.01);
+  transition: all 0.25s;
+}
+
+.buttons .btn__prepend {
+  margin-bottom: 100px;
+}
+
+.buttons .btn__circle {
+  padding: 5px;
+}
+
+.buttons .input__diameter {
+  margin-bottom: 20px;
+}
+
+.buttons .input__diameter .circle__input {
+  max-width: 180px;
+  border: 1px solid #adadad;
+  border-radius: 4px;
+  font-size: 2rem;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.created__blocks > div {
+  padding: 5px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  border: 1px solid black;
+}
+
+.created__blocks > div:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.main__content {
+  padding: 20px;
+  background-color: #ffdab9;
+}
+
+.main__flex {
+  display: flex;
+  justify-content: space-between;
+  min-height: 80vh;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#root {
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+#root table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#root table caption {
+  font-weight: 600;
+  font-style: normal;
+  padding-bottom: 10px;
+}
+
+#root table tr {
+  text-align: center;
+}
+
+#root table tr td {
+  padding-top: 10px;
+}
+
+#root table,
+#root table th,
+#root table td {
+  border: 2px solid black;
+}
+
+.ul__circle {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  gap: 10px;
+  padding-bottom: 40px;
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+.ul__circle .li__circle {
+  border-radius: 50%;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.ul__circle .li__circle:hover {
+  transform: scale(1.05, 1.05);
+  cursor: pointer;
+}
