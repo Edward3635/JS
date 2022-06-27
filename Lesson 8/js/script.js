@@ -3,7 +3,7 @@
 const words = ['feign', 'appointment', 'attract', 'expectation', 'bitter', 'soil', 'expenditure', 'obscure',
 	'warning', 'formal', 'roll', 'chimney', 'waterfall', 'funny', 'fur', 'opposite', 'excitement', 'depressed', 'outlook'], btnPrepend = document.querySelector('.btn__prepend'), btnCircle = document.querySelector('.btn__circle');
 
-let divCounter = 0, circleCounter = 0, liCounter = 0, liClick;
+let divCounter = 0, circleCounter = 0, liCounter = 0;
 // При натисканні на кнопку = виконання функції
 btnPrepend.onclick = prependDiv;
 
@@ -85,8 +85,8 @@ function drawCircle(diameter) {
 		ul = document.createElement('ul');
 	ul.classList.add('ul__circle');
 	neighbor.after(ul);
-	for (let i = 1; i <= 10; i++) {
-		for (let j = 1; j <= 10; j++) {
+	for (let i = 0; i < 10; i++) {
+		for (let j = 0; j < 10; j++) {
 			const parent = document.querySelector('.ul__circle'),
 				li = document.createElement('li');
 			li.classList.add('li__circle');
@@ -98,24 +98,21 @@ function drawCircle(diameter) {
 
 	}
 	alert('Результат знизу.');
+	deleteCircle();
 
-	//liClick = document.querySelector('.li__circle');
+
 }
-liClick.onclick = test;
-function test() {
-	alert('asd');
 
-	// let item = document.querySelector('.li__circle');
-	// let ul = document.querySelector('.ul__circle');
-	// if (ul.firstElementChild) {
-	// 	ul.removeChild(this);
-	// 	liCounter++;
-	// }
-	// if (liCounter === 99) {
-	// 	item = document.querySelector('.classwork');
-	// 	item.lastChild.remove();
-	// }
+function deleteCircle() {
+	let ul = document.querySelector('.ul__circle');
 
+	ul.addEventListener('click', e => {
+		ul.removeChild(e.target);
+		liCounter++;
+		if (liCounter === 100) {
+			ul.remove();
+		}
+	});
 }
 
 
