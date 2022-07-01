@@ -1,36 +1,8 @@
-// Homework
-// Масив слів, які будуть виводитись у випадковому порядку
-const words = ['feign', 'appointment', 'attract', 'expectation', 'bitter', 'soil', 'expenditure', 'obscure',
-	'warning', 'formal', 'roll', 'chimney', 'waterfall', 'funny', 'fur', 'opposite', 'excitement', 'depressed', 'outlook'],
-	// Користувацька функція для отримання елементу сторінки по id/class/tag.
-	getSelector = selector => document.querySelector(selector),
+// Користувацька функція для отримання елементу сторінки по id/class/tag.
+const getSelector = selector => document.querySelector(selector),
 	btnPrepend = getSelector('.btn__prepend'), btnCircle = getSelector('.btn__circle');
 // Лічильники
 let divCounter = 0, circleCounter = 0, liCounter = 0;
-// При натисканні на кнопку = виконання функції
-btnPrepend.onclick = prependDiv;
-
-// Функція на додавання блоків <div>
-function prependDiv() {
-	if (divCounter < 10) {
-		const divs = getSelector('.created__blocks'),
-			div = document.createElement('div');
-		// алгоритм вибору слова з масиву через random
-		div.innerHTML = words[Math.floor(Math.random() * words.length)];
-		divs.prepend(div);
-		divCounter++;
-	} else {
-		// Коли кількість > 10  то видаляємо все
-		const div = document.querySelector('.created__blocks');
-
-		while (div.firstElementChild) {
-			div.firstElementChild.remove();
-
-		}
-		divCounter = 0;
-
-	}
-}
 
 // Classwork
 // Масив об'єктів
@@ -65,15 +37,8 @@ function output(arg) {
 	rootId.innerHTML += `<tr><td>${arg[0]}</td><td>${arg[1]}</td><td>${arg[2]}</td></tr>`;
 }
 
-/*
-Додаткова задача
-Намалювати на сторінці круг, використовуючи параметри, уведені користувачем.
-При завантаженні сторінки - показати на ній кнопку з текстом "Намалювати круг". Кнопка є єдиним контентом в тілі html документу,
-увесь інший контент повинен бути створений і доданий на сторінку за допомогою javascript.
-При натиску на кнопку "Намалювати круг" показати 1 поле для вводу - діаметр кругу. При натиску на кнопку "Намалювати" створити
-на сторінці 100 кругів (10*10) випадкового кольору. При натиску на конкретний круг - цей круг повинен зникнути, при цьому пусте
-місце заповнюватись, тобто, всі інші круги сдвигаються вліво.
-*/
+
+//Homework
 // Відслідковуємо клік на кнопку і викликаємо функцію
 btnCircle.onclick = showInputCircle;
 function showInputCircle() {
@@ -140,6 +105,38 @@ function deleteCircle() {
 		}
 	});
 }
+/*
+Додаткова задача
+Створіть сторінку з кнопкою. При натисканні на кнопку, на сторінці створюється div з довільним текстом.
+Після створення 10 div усі вони повинні видалитись.
+*/
+// Масив слів, які будуть виводитись у випадковому порядку
+const words = ['feign', 'appointment', 'attract', 'expectation', 'bitter', 'soil', 'expenditure', 'obscure',
+	'warning', 'formal', 'roll', 'chimney', 'waterfall', 'funny', 'fur', 'opposite', 'excitement', 'depressed', 'outlook'];
 
+// При натисканні на кнопку = виконання функції
+btnPrepend.onclick = prependDiv;
+
+// Функція на додавання блоків <div>
+function prependDiv() {
+	if (divCounter < 10) {
+		const divs = getSelector('.created__blocks'),
+			div = document.createElement('div');
+		// алгоритм вибору слова з масиву через random
+		div.innerHTML = words[Math.floor(Math.random() * words.length)];
+		divs.prepend(div);
+		divCounter++;
+	} else {
+		// Коли кількість > 10  то видаляємо все
+		const div = document.querySelector('.created__blocks');
+
+		while (div.firstElementChild) {
+			div.firstElementChild.remove();
+
+		}
+		divCounter = 0;
+
+	}
+}
 
 
