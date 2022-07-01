@@ -130,40 +130,71 @@ function authorization() {
 		} else if (arg === 'logpass') {
 			titleLogin.textContent = 'Ви не заповнили поле login';
 			titlePassword.textContent = 'Ви не заповнили поле password';
+		} else if (arg === 'correct') {
+			titleSignIn.style.color = 'green';
+			titleSignIn.textContent = 'Ви авторизовані у системі!';
 		} else {
 			titleSignIn.textContent = 'Логін або пароль не вірні';
 		}
 	}
-	function hideText() {
-		titleSignIn.textContent = '';
+	function hideText(arg) {
+		//titleSignIn.textContent = '';
+		if (arg === 'login') {
+			titleLogin.textContent = '';
+		} else if (arg === 'pass') {
+			titlePassword.textContent = '';
+		} else if (arg === 'logpass') {
+			titleLogin.textContent = '';
+			titlePassword.textContent = '';
+		} else if (arg === 'correct') {
+			titleSignIn.textContent = '';
+		} else {
+			titleSignIn.textContent = '';
+		}
 	}
 
 	if (inputLoginValue !== '') {
 		if (inputPasswordValue === '') {
 			resetStyle('pass');
+			setTimeout(hideText, 3500, 'pass');
 		} else {
 			if (inputLoginValue === 'admin') {
 				if (inputPasswordValue === '12345') {
-					titleSignIn.style.color = 'green';
-					titleSignIn.textContent = 'Ви авторизовані у системі!';
-					setTimeout(hideText, 2500);
+					resetStyle('correct');
+					setTimeout(hideText, 1500, 'correct');
+					setTimeout(() => document.location = 'http://www.mozilla.org', 2200);
 				} else {
 					resetStyle();
+					setTimeout(hideText, 3500);
 
 				}
 			} else {
 				resetStyle();
+				setTimeout(hideText, 3500);
 			}
 		}
 	} else {
 		if (inputPasswordValue === '') {
 			resetStyle('logpass');
+			setTimeout(hideText, 3500, 'logpass');
 
 		} else {
 			resetStyle('login');
+			setTimeout(hideText, 3500, 'login');
 		}
 
 
 
 	}
 }
+
+// Slider
+let sliderCounter = 2;
+setInterval(() => {
+	const img = document.querySelector('.slider-img');
+	img.src = `./img/img${sliderCounter}.jpg`;
+	sliderCounter++;
+	if (sliderCounter > 5) {
+		sliderCounter = 1;
+	}
+}, 3000);

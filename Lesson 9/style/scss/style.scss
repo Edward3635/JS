@@ -184,5 +184,18 @@ body {
 				font-size: 1.5rem;
 			}
 		}
+		.slider {
+			max-width: 600px;
+			margin: 0 auto;
+			padding-top: 50px;
+			.slider-item {
+				border: 5px solid orange;
+				border-radius: 36px;
+				img {
+					border-radius: 30px;
+					max-width: 100%;
+				}
+			}
+		}
 	}
 }

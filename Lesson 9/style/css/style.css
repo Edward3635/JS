@@ -275,3 +275,19 @@ body {
   line-height: 1.1;
   font-size: 1.5rem;
 }
+
+.main__content .slider {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.main__content .slider .slider-item {
+  border: 5px solid orange;
+  border-radius: 36px;
+}
+
+.main__content .slider .slider-item img {
+  border-radius: 30px;
+  max-width: 100%;
+}
