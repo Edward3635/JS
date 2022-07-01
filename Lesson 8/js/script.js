@@ -1,8 +1,10 @@
 // Homework
 // Масив слів, які будуть виводитись у випадковому порядку
 const words = ['feign', 'appointment', 'attract', 'expectation', 'bitter', 'soil', 'expenditure', 'obscure',
-	'warning', 'formal', 'roll', 'chimney', 'waterfall', 'funny', 'fur', 'opposite', 'excitement', 'depressed', 'outlook'], btnPrepend = document.querySelector('.btn__prepend'), btnCircle = document.querySelector('.btn__circle');
-
+	'warning', 'formal', 'roll', 'chimney', 'waterfall', 'funny', 'fur', 'opposite', 'excitement', 'depressed', 'outlook'],
+	// Користувацька функція для отримання елементу сторінки по id/class/tag.
+	getSelector = selector => document.querySelector(selector),
+	btnPrepend = getSelector('.btn__prepend'), btnCircle = getSelector('.btn__circle');
 // Лічильники
 let divCounter = 0, circleCounter = 0, liCounter = 0;
 // При натисканні на кнопку = виконання функції
@@ -11,7 +13,7 @@ btnPrepend.onclick = prependDiv;
 // Функція на додавання блоків <div>
 function prependDiv() {
 	if (divCounter < 10) {
-		const divs = document.querySelector('.created__blocks'),
+		const divs = getSelector('.created__blocks'),
 			div = document.createElement('div');
 		// алгоритм вибору слова з масиву через random
 		div.innerHTML = words[Math.floor(Math.random() * words.length)];
@@ -45,7 +47,7 @@ const data = [
 	{ 'baseCurrency': 'UAH', 'currency': 'EUR', 'saleRateNB': 18.7949200, 'purchaseRateNB': 18.7949200, 'saleRate': 20.0000000, 'purchaseRate': 19.2000000 },
 	{ 'baseCurrency': 'UAH', 'currency': 'PLZ', 'saleRateNB': 4.4922010, 'purchaseRateNB': 4.4922010, 'saleRate': 5.0000000, 'purchaseRate': 4.2000000 }];
 
-const rootId = document.querySelector('#root');
+const rootId = getSelector('#root');
 rootId.innerHTML += '<table><caption>Курс Валюти</caption>' +
 	'<thead><tr><th>Валюта</th><th>Покупка</th><th>Продажа</th></tr></thead><tbody></tbody></table>';
 
@@ -59,7 +61,7 @@ data.forEach(item => {
 
 // Функція виводу даних в таблицю
 function output(arg) {
-	const rootId = document.querySelector('tbody');
+	const rootId = getSelector('tbody');
 	rootId.innerHTML += `<tr><td>${arg[0]}</td><td>${arg[1]}</td><td>${arg[2]}</td></tr>`;
 }
 
@@ -78,7 +80,7 @@ function showInputCircle() {
 	// true та false необхідні для зміни відображення кнопки, вона "подвійна"
 	if (circleCounter == false) {
 		// Коли false - показуємо input
-		const neighbor = document.querySelector('.btn__circle'),
+		const neighbor = getSelector('.btn__circle'),
 			showInput = document.createElement('div');
 		showInput.classList.add('input__diameter');
 		neighbor.innerHTML = 'Намалювати';
@@ -86,10 +88,10 @@ function showInputCircle() {
 		neighbor.before(showInput);
 		circleCounter++;
 	} else {
-		const circleInputValue = document.querySelector('.circle__input').value;
+		const circleInputValue = getSelector('.circle__input').value;
 		// Перевірка вводу регулярним виразом
 		if (circleInputValue.replace(/\D/, '')) {
-			const neighbor = document.querySelector('.btn__circle');
+			const neighbor = getSelector('.btn__circle');
 			neighbor.previousElementSibling.remove();
 			neighbor.innerHTML = 'Намалювати круг';
 			circleCounter--;
@@ -102,13 +104,13 @@ function showInputCircle() {
 }
 // Функція малювання кругів із значенням діаметру, взятим із input різними кольорами
 function drawCircle(diameter) {
-	const neighbor = document.querySelector('#root'),
+	const neighbor = getSelector('#root'),
 		ul = document.createElement('ul');
 	ul.classList.add('ul__circle');
 	neighbor.after(ul);
 	for (let i = 0; i < 10; i++) {
 		for (let j = 0; j < 10; j++) {
-			const parent = document.querySelector('.ul__circle'),
+			const parent = getSelector('.ul__circle'),
 				li = document.createElement('li');
 			li.classList.add('li__circle');
 			parent.append(li);
@@ -125,7 +127,7 @@ function drawCircle(diameter) {
 }
 // Видалення певного круга на клік
 function deleteCircle() {
-	let ul = document.querySelector('.ul__circle');
+	let ul = getSelector('.ul__circle');
 	// Слікування за подією
 	ul.addEventListener('click', e => {
 		// видалення круга, який натиснули
