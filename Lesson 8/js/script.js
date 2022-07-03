@@ -2,7 +2,7 @@
 const getSelector = selector => document.querySelector(selector),
 	btnPrepend = getSelector('.btn__prepend'), btnCircle = getSelector('.btn__circle');
 // Лічильники
-let divCounter = 0, circleCounter = 0, liCounter = 0;
+let divCounter = 0, circleCounter = 0;
 
 // Classwork
 // Масив об'єктів
@@ -92,18 +92,25 @@ function drawCircle(diameter) {
 }
 // Видалення певного круга на клік
 function deleteCircle() {
-	let ul = getSelector('.ul__circle');
+	let ul = getSelector('.ul__circle'),
+		liCounter = 0;
 	// Слікування за подією
-	ul.addEventListener('click', e => {
+	function circleListener(e) {
+		let target = e.target.closest('.li__circle');
+		// Якщо клік не по кругу - подія ігнорується
+		if (!target) return;
 		// видалення круга, який натиснули
 		ul.removeChild(e.target);
 		// за кожний видалений круг збільшуємо каунтер
 		liCounter++;
-		// Коли каунтер = 100, видаляємо пустий список.
+		// Коли каунтер = 100, видаляємо пустий список та EventListener, обнуляємо каунтер.
 		if (liCounter === 100) {
 			ul.remove();
+			ul.removeEventListener('click', circleListener);
+			liCounter = 0;
 		}
-	});
+	}
+	ul.addEventListener('click', circleListener);
 }
 /*
 Додаткова задача
