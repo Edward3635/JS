@@ -5,54 +5,17 @@ const getSelector = selector => document.querySelector(selector),
 	buttons = getSelector('.buttons'),
 	display = getSelector('.display__container'),
 	count = () => {
-		let content;
-		switch (true) {
-			case (hour < 10):
-				switch (true) {
-					case (min < 10):
-						switch (true) {
-							case (sec < 10):
-								content = `0${hour}:0${min}:0${sec}`; break;
-							default:
-								content = `0${hour}:0${min}:${sec}`; break;
-						} break;
-					case (min >= 10):
-						switch (true) {
-							case (sec < 10):
-								content = `0${hour}:${min}:0${sec}`; break;
-							default:
-								content = `0${hour}:${min}:${sec}`; break;
-						}break;
-				}break;
-			case (hour >= 10):
-				switch (true) {
-					case (min < 10):
-						switch (true) {
-							case (sec < 10):
-								content = `${hour}:0${min}:0${sec}`; break;
-							default:
-								content = `${hour}:0${min}:${sec}`; break;
-						}
-						break;
-					case (min >= 10):
-						switch (true) {
-							case (sec < 10):
-								content = `${hour}:${min}:0${sec}`; break;
-							default:
-								content = `${hour}:${min}:${sec}`; break;
-						}break;
-				}break;
-		}
-		getSelector('.display__text').innerHTML = content;
+		getSelector('.display__text').innerHTML =
+			`${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
 
 		if (msec === 99) {
 			msec = 0, sec++;
-		}
-		if (sec === 60) {
-			sec = 0, min++;
-		}
-		if (min === 60) {
-			min = 0, hour++;
+			if (sec === 60) {
+				sec = 0, min++;
+				if (min === 60) {
+					min = 0, hour++;
+				}
+			}
 		}
 		msec++;
 	};
