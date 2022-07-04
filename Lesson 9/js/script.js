@@ -43,6 +43,15 @@ buttons.addEventListener('click', e => {
 
 
 // Homework Вгадай значення
+// Для зручності, можна через Enter вводити значення
+addEventListener('keyup', (e) => {
+	if (e.code === 'Enter') {
+		if (getSelector('.input__number') === document.activeElement) {
+			showRandomNumber();
+		}
+	}
+
+});
 
 let randomNumber = Math.floor(Math.random() * 100) + 1,
 	btn__guessNumber = getSelector('.btn__guess-number');
@@ -63,6 +72,7 @@ function showRandomNumber() {
 			getSelector('.input__title').style.color = 'green';
 			getSelector('.input__title').textContent = `Вітаю! Загадане число - ${randomNumber}.
 			Граєм далі, яке наступне???`;
+			getSelector('.input__number').value = '';
 			randomNumber = Math.floor(Math.random() * 100) + 1;
 
 
@@ -71,6 +81,7 @@ function showRandomNumber() {
 	} else {
 		getSelector('.input__title').textContent = 'Треба ввести число! (Цифрами)';
 	}
+	getSelector('.input__number').focus();
 
 }
 
