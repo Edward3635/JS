@@ -41,6 +41,16 @@ h2 {
 		color: white;
 		border-radius: 40px;
 		background-color: #000;
+		::-webkit-scrollbar {
+			height: 4px;
+		}
+		::-webkit-scrollbar-thumb {
+			border-radius: 50px;
+			background-color: #939393;
+			&:hover {
+				background-color: #7c7c7c;
+			}
+		}
 		.top__container {
 			display: flex;
 			justify-content: space-between;
@@ -58,8 +68,10 @@ h2 {
 			margin-right: 10px;
 			margin-bottom: 10px;
 			text-align: right;
+			overflow: auto;
+			overflow-y: hidden;
 		}
-		.buttons-container {
+		.buttons__container {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			gap: 10px;

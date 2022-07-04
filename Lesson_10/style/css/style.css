@@ -114,6 +114,19 @@ h2 {
   background-color: #000;
 }
 
+.main .calculator ::-webkit-scrollbar {
+  height: 4px;
+}
+
+.main .calculator ::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background-color: #939393;
+}
+
+.main .calculator ::-webkit-scrollbar-thumb:hover {
+  background-color: #7c7c7c;
+}
+
 .main .calculator .top__container {
   display: flex;
   justify-content: space-between;
@@ -132,16 +145,18 @@ h2 {
   margin-right: 10px;
   margin-bottom: 10px;
   text-align: right;
+  overflow: auto;
+  overflow-y: hidden;
 }
 
-.main .calculator .buttons-container {
+.main .calculator .buttons__container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-bottom: 36px;
 }
 
-.main .calculator .buttons-container > .button {
+.main .calculator .buttons__container > .button {
   font-size: 28px;
   width: 55px;
   height: 55px;
@@ -153,20 +168,20 @@ h2 {
   transition: filter 0.3s;
 }
 
-.main .calculator .buttons-container > .button:active, .main .calculator .buttons-container > .button:focus {
+.main .calculator .buttons__container > .button:active, .main .calculator .buttons__container > .button:focus {
   filter: brightness(120%);
 }
 
-.main .calculator .buttons-container > .function {
+.main .calculator .buttons__container > .function {
   color: #000;
   background-color: #a5a5a5;
 }
 
-.main .calculator .buttons-container > .operator {
+.main .calculator .buttons__container > .operator {
   background-color: #f1a33c;
 }
 
-.main .calculator .buttons-container .number0 {
+.main .calculator .buttons__container .number0 {
   width: 125px;
   border-radius: 55px;
   justify-content: flex-start;
