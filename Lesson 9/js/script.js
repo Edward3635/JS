@@ -4,6 +4,7 @@ let msec = 0, sec = 0, min = 0, hour = 0, intervalHandler, isStart = true;
 const getSelector = selector => document.querySelector(selector),
 	buttons = getSelector('.buttons'),
 	display = getSelector('.display__container'),
+	inputNumber = getSelector('.input__number'),
 	count = () => {
 		getSelector('.display__text').innerHTML =
 			`${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
@@ -44,11 +45,11 @@ buttons.addEventListener('click', e => {
 
 // Homework Вгадай значення
 // Для зручності, можна через Enter вводити значення
-addEventListener('keyup', (e) => {
+inputNumber.addEventListener('keyup', (e) => {
 	if (e.code === 'Enter') {
-		if (getSelector('.input__number') === document.activeElement) {
-			showRandomNumber();
-		}
+		//if (getSelector('.input__number') === document.activeElement) {
+		showRandomNumber();
+		//}
 	}
 
 });
@@ -57,22 +58,22 @@ let randomNumber = Math.floor(Math.random() * 100) + 1,
 	btn__guessNumber = getSelector('.btn__guess-number');
 btn__guessNumber.onclick = showRandomNumber;
 function showRandomNumber() {
-	const numberInputValue = getSelector('.input__number').value;
+	const numberInputValue = inputNumber.value;
 	// Перевірка вводу регулярним виразом
 	if (numberInputValue.replace(/\D/, '')) {
 		if (numberInputValue > randomNumber) {
 			getSelector('.input__title').style.color = 'red';
 			getSelector('.input__title').textContent = 'Загадане число менше введеного Вами.';
-			getSelector('.input__number').value = '';
+			inputNumber.value = '';
 		} else if (numberInputValue < randomNumber) {
 			getSelector('.input__title').style.color = 'red';
 			getSelector('.input__title').textContent = 'Загадане число більше введеного Вами.';
-			getSelector('.input__number').value = '';
+			inputNumber.value = '';
 		} else {
 			getSelector('.input__title').style.color = 'green';
 			getSelector('.input__title').textContent = `Вітаю! Загадане число - ${randomNumber}.
 			Граєм далі, яке наступне???`;
-			getSelector('.input__number').value = '';
+			inputNumber.value = '';
 			randomNumber = Math.floor(Math.random() * 100) + 1;
 
 
@@ -81,7 +82,7 @@ function showRandomNumber() {
 	} else {
 		getSelector('.input__title').textContent = 'Треба ввести число! (Цифрами)';
 	}
-	getSelector('.input__number').focus();
+	inputNumber.focus();
 
 }
 
