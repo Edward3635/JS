@@ -1,20 +1,33 @@
+// Оголошення змінних та стрілкових функцій.
 const getSelector = arg => document.querySelector(arg),
 	btnContainer = getSelector('.buttons__container'), display = getSelector('.display'),
 	getValueAsStr = () => display.textContent.split('.').join(''),
-	getValueAsNum = () => parseFloat(getValueAsStr()),
-	setStrAsValue = (str) => {
-		if (str[str.length - 1] === '.') {
-			display.textContent += '.';
-			return;
-		}
-		const [wholeNumStr, decimalStr] = str.split('.');
-		if (decimalStr) {
-			display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US') + '.' + decimalStr;
-		} else {
-			display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US');
-		}
-	};
+	getValueAsNum = () => parseFloat(getValueAsStr());
 
+function setStrAsValue(str) {
+	if (str[str.length - 1] === '.') {
+		display.textContent += '.';
+		return;
+	}
+	const [wholeNumStr, decimalStr] = str.split('.');
+	if (decimalStr) {
+		display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US') + '.' + decimalStr;
+	} else {
+		display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US');
+	}
+}
+// Функція, використовується нижче для друкування результату в дисплей.
+function showResult(value) {
+	if (display.textContent === '0') {
+		setStrAsValue(value);
+	} else {
+		setStrAsValue(display.textContent.split(',').join('') +
+			value);
+	}
+	// Автоматичний скрол вправо по мірі друкування нових чисел.
+	display.scrollLeft = 9999;
+}
+// Функція отримання реального часу
 function updateTime() {
 	const hours = getSelector('.span__hour'), minutes = getSelector('.span__min');
 	hours.innerHTML = new Date().getHours().toString().padStart(2, '0');
@@ -29,17 +42,15 @@ updateTime();
 
 function btnListener(e) {
 	if (e.target.classList.contains('number')) {
-		if (display.textContent === '0') {
-			setStrAsValue(e.target.textContent);
-		} else {
-			setStrAsValue(display.textContent.split(',').join('') +
-				e.target.textContent);
-		}
+		showResult(e.target.textContent);
 	} else if (e.target.classList.contains('function')) {
 		if (e.target.classList.contains('ac')) {
 			setStrAsValue('0');
 		} else if (e.target.classList.contains('pm')) {
-			alert(!!-1);
+			if (e.target.textContent != 0) {
+				let res = e.target.textContent * -1;
+				display.textContent = res;
+			}
 
 		} else if (e.target.classList.contains('percent')) {
 			alert('%');
@@ -58,12 +69,25 @@ function btnListener(e) {
 	}
 }
 function keyboardListener(e) {
-	alert(e.code);
+	//alert(e.code);
+	if (e.shiftKey && e.code) {
+		const arr = ['Backspace', 'Slash', 'Minus', 'Enter', 'Period', 'Equal', 'Digit8', 'Digit5'];
+		arr.forEach(el => {
+			if (e.shiftKey && e.code == el) {
+				alert('Wohoo');
 
-	if (e.code === 'Digit0' || e.code === 'Digit1') {
-		let number = e.code.match(/(\d+)/);
-		alert(Number(number));
+			}
+		});
+	} else if (e.code.includes('Digit')) {
+		for (let i = 0; i < 10; i++) {
+			let word = `Digit${i}`;
+			if (e.code === word) {
+				let number = e.code.match(/\d+/)[0];
+				showResult(number);
 
+			}
+
+		}
 	}
 }
 addEventListener('keyup', keyboardListener);
