@@ -1,5 +1,19 @@
 const getSelector = arg => document.querySelector(arg),
-	btnContainer = getSelector('.buttons__container'), display = getSelector('.display');
+	btnContainer = getSelector('.buttons__container'), display = getSelector('.display'),
+	getValueAsStr = () => display.textContent.split('.').join(''),
+	getValueAsNum = () => parseFloat(getValueAsStr()),
+	setStrAsValue = (str) => {
+		if (str[str.length - 1] === '.') {
+			display.textContent += '.';
+			return;
+		}
+		const [wholeNumStr, decimalStr] = str.split('.');
+		if (decimalStr) {
+			display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US') + '.' + decimalStr;
+		} else {
+			display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US');
+		}
+	};
 
 function updateTime() {
 	const hours = getSelector('.span__hour'), minutes = getSelector('.span__min');
@@ -12,48 +26,47 @@ function updateTime() {
 	}, 1000);
 }
 updateTime();
-const getValueAsStr = () => display.textContent.split('.').join(''),
-	getValueAsNum = () => parseFloat(getValueAsStr()),
-	setStrAsValue = (str) => {
-		if (str[str.length - 1] === '.') {
-			display.textContent += '.';
-			return;
-		}
-		const [wholeNumStr, decimalStr] = str.split('.');
-		if (str) {
-			display.textContent = `${parseFloat(wholeNumStr).toLocaleString()}.${decimalStr}`;
-		} else {
-			display.textContent = parseFloat(wholeNumStr).toLocaleString();
-		}
-	};
+
 function btnListener(e) {
 	if (e.target.classList.contains('number')) {
 		if (display.textContent === '0') {
-			display.textContent = e.target.textContent;
+			setStrAsValue(e.target.textContent);
 		} else {
-			display.textContent = parseFloat(display.textContent.split(',').join('') +
-				e.target.textContent).toLocaleString('en-US');
+			setStrAsValue(display.textContent.split(',').join('') +
+				e.target.textContent);
 		}
 	} else if (e.target.classList.contains('function')) {
 		if (e.target.classList.contains('ac')) {
 			setStrAsValue('0');
-			//display.textContent = '0';
+		} else if (e.target.classList.contains('pm')) {
+			alert(!!-1);
+
+		} else if (e.target.classList.contains('percent')) {
+			alert('%');
 
 		}
 	} else if (e.target.classList.contains('operator')) {
 		alert('%');
 
 	} else if (e.target.classList.contains('decimal')) {
-		display.textContent = `${display.textContent.split(',').join('')}`;
+		display.textContent = display.textContent.split(',').join('');
 		if (!display.textContent.includes('.')) {
-			display.textContent = `${display.textContent.split(',').join('')}.`;
+			setStrAsValue(`${display.textContent}.`);
 		} else {
 			return;
 		}
-	} else {
-		return;
 	}
 }
+function keyboardListener(e) {
+	alert(e.code);
+
+	if (e.code === 'Digit0' || e.code === 'Digit1') {
+		let number = e.code.match(/(\d+)/);
+		alert(Number(number));
+
+	}
+}
+addEventListener('keyup', keyboardListener);
 btnContainer.addEventListener('click', btnListener);
 /*
 const arr = [getSelector('.number0'), getSelector('.number1'), getSelector('.number2'), getSelector('.number3'),
