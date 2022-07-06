@@ -168,8 +168,9 @@ h2 {
   transition: filter 0.3s;
 }
 
-.main .calculator .buttons__container > .button:active, .main .calculator .buttons__container > .button:focus {
+.main .calculator .buttons__container > .button:active {
   filter: brightness(120%);
+  transform: scale(1.02, 1.02);
 }
 
 .main .calculator .buttons__container > .function {

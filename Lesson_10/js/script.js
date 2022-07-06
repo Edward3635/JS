@@ -1,8 +1,8 @@
 // Оголошення змінних та стрілкових функцій.
 const getSelector = arg => document.querySelector(arg),
 	btnContainer = getSelector('.buttons__container'), display = getSelector('.display'),
-	getValueAsStr = () => display.textContent.split('.').join(''),
-	getValueAsNum = () => parseFloat(getValueAsStr());
+	getValueAsNum = (value) => Number(value.split(',').join(''));
+let valInMemory, operatorInMemory, valInMemoryCopy;
 
 function setStrAsValue(str) {
 	if (str[str.length - 1] === '.') {
@@ -16,13 +16,63 @@ function setStrAsValue(str) {
 		display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US');
 	}
 }
+function addDecimal() {
+	display.textContent = display.textContent.split(',').join('');
+	if (!display.textContent.includes('.')) {
+		setStrAsValue(`${display.textContent}.`);
+	} else {
+		return;
+	}
+}
+function executeResult(operator) {
+	if (!valInMemory) {
+		if (operator != 'equal') {
+			valInMemory = getValueAsNum(display.textContent);
+			valInMemoryCopy = valInMemory;
+			operatorInMemory = operator;
+		} else {
+			valInMemory = getValueAsNum(display.textContent);
+			valInMemoryCopy = valInMemory;
+			operatorInMemory = '';
+		}
+	} else {
+		if (operatorInMemory === 'addition') {
+			display.textContent = (valInMemory + getValueAsNum(display.textContent)).toLocaleString('en-US');
+		} else if (operatorInMemory === 'subtraction') {
+			display.textContent = (valInMemory - getValueAsNum(display.textContent)).toLocaleString('en-US');
+		} else if (operatorInMemory === 'multiply') {
+			display.textContent = (valInMemory * getValueAsNum(display.textContent)).toLocaleString('en-US');
+		} else if (operatorInMemory === 'division') {
+			if (display.textContent === '0') {
+				display.textContent = 'error';
+			} else {
+				display.textContent = (valInMemory / getValueAsNum(display.textContent)).toLocaleString('en-US');
+			}
+		}
+		operatorInMemory = operator;
+		valInMemory = getValueAsNum(display.textContent);
+		valInMemoryCopy = valInMemory;
+
+	}
+}
+function executeOperation(operator) {
+	executeResult(operator);
+}
 // Функція, використовується нижче для друкування результату в дисплей.
 function showResult(value) {
 	if (display.textContent === '0') {
 		setStrAsValue(value);
 	} else {
-		setStrAsValue(display.textContent.split(',').join('') +
-			value);
+		if (!valInMemory) {
+			setStrAsValue(display.textContent.split(',').join('') + value);
+		} else if (valInMemory) {
+			if (valInMemoryCopy === getValueAsNum(display.textContent)) {
+				setStrAsValue(value);
+				valInMemoryCopy = 0;
+			} else {
+				setStrAsValue(display.textContent.split(',').join('') + value);
+			}
+		}
 	}
 	// Автоматичний скрол вправо по мірі друкування нових чисел.
 	display.scrollLeft = 9999;
@@ -46,38 +96,49 @@ function btnListener(e) {
 	} else if (e.target.classList.contains('function')) {
 		if (e.target.classList.contains('ac')) {
 			setStrAsValue('0');
+			valInMemory = 0;
+			operatorInMemory = 0;
 		} else if (e.target.classList.contains('pm')) {
-			if (e.target.textContent != 0) {
-				let res = e.target.textContent * -1;
-				display.textContent = res;
+			if (display.textContent !== '0') {
+				display.textContent = (getValueAsNum(display.textContent) * (-1)).toLocaleString('en-US');
 			}
 
 		} else if (e.target.classList.contains('percent')) {
-			alert('%');
+			display.textContent = (getValueAsNum(display.textContent) / 100).toLocaleString('en-US');
+
 
 		}
 	} else if (e.target.classList.contains('operator')) {
-		alert('%');
+		if (e.target.classList.contains('division')) {
+			executeOperation('division');
+		} else if (e.target.classList.contains('multiply')) {
+			executeOperation('multiply');
+		} else if (e.target.classList.contains('subtraction')) {
+			executeOperation('subtraction');
+		} else if (e.target.classList.contains('addition')) {
+			executeOperation('addition');
+		} else if (e.target.classList.contains('equal')) {
+			executeOperation('equal');
+		}
 
 	} else if (e.target.classList.contains('decimal')) {
-		display.textContent = display.textContent.split(',').join('');
-		if (!display.textContent.includes('.')) {
-			setStrAsValue(`${display.textContent}.`);
-		} else {
-			return;
-		}
+		addDecimal();
 	}
 }
 function keyboardListener(e) {
-	//alert(e.code);
 	if (e.shiftKey && e.code) {
-		const arr = ['Backspace', 'Slash', 'Minus', 'Enter', 'Period', 'Equal', 'Digit8', 'Digit5'];
-		arr.forEach(el => {
-			if (e.shiftKey && e.code == el) {
-				alert('Wohoo');
+		const arrObjects = [
+			{ name: 'Equal', callFunc: () => executeOperation('addition') },
+			{ name: 'Digit5', callFunc: () => display.textContent /= 100 },
+			{ name: 'Digit8', callFunc: () => executeOperation('multiply') }
+		];
+		arrObjects.forEach(el => {
+			if (e.code === el.name) {
+				el.callFunc();
 
 			}
 		});
+
 	} else if (e.code.includes('Digit')) {
 		for (let i = 0; i < 10; i++) {
 			let word = `Digit${i}`;
@@ -88,8 +149,24 @@ function keyboardListener(e) {
 			}
 
 		}
+	} else {
+		const arrObjects = [
+			{ name: 'Backspace', callFunc: () => { setStrAsValue('0'); valInMemory = 0; operatorInMemory = 0; } },
+			{ name: 'Slash', callFunc: () => executeOperation('division') },
+			{ name: 'Minus', callFunc: () => executeOperation('subtraction') },
+			{ name: 'Period', callFunc: () => addDecimal() },
+			{ name: 'Equal', callFunc: () => executeOperation('equal') },
+			{ name: 'Enter', callFunc: () => executeOperation('equal') }
+		];
+		arrObjects.forEach(el => {
+			if (e.code === el.name) {
+				el.callFunc();
+			}
+		});
 	}
 }
+alert('Клавіатура теж працює.');
+
 addEventListener('keyup', keyboardListener);
 btnContainer.addEventListener('click', btnListener);
 /*
