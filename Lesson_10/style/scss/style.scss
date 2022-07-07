@@ -3,7 +3,7 @@
 
 body {
 	font-family: "Roboto", sans-serif;
-	background: url(../../img/background1.jpg) no-repeat;
+	background: url(../../img/background1.jpg) no-repeat, #54777b;
 	background-size: cover;
 }
 .show {
@@ -29,8 +29,6 @@ h2 {
 }
 
 .main {
-	background: url(../../img/background1.jpg) no-repeat;
-	background-size: cover;
 	&__container {
 		max-width: 800px;
 		margin: 0 auto;

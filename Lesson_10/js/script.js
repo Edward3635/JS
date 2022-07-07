@@ -17,6 +17,7 @@ function setStrAsValue(str) {
 		display.textContent = parseFloat(wholeNumStr).toLocaleString('en-US');
 	}
 }
+// Функція по додаванню крапки
 function addDecimal() {
 	display.textContent = display.textContent.split(',').join('');
 	if (!display.textContent.includes('.')) {
@@ -25,6 +26,7 @@ function addDecimal() {
 		return;
 	}
 }
+// Виконання операцій
 function executeResult(operator) {
 	if (!valInMemory) {
 		if (operator != 'equal') {
@@ -56,10 +58,11 @@ function executeResult(operator) {
 
 	}
 }
+// Зайва функція, колись була потрібна, можна видалити
 function executeOperation(operator) {
 	executeResult(operator);
 }
-// Функція, використовується нижче для друкування результату в дисплей.
+// Функція, використовується нижче для друкування в дисплей.
 function showResult(value) {
 	if (display.textContent === '0') {
 		setStrAsValue(value);
@@ -91,6 +94,7 @@ function updateTime() {
 }
 updateTime();
 
+// Слідкування за подіями кліку
 function btnListener(e) {
 	if (e.target.classList.contains('number')) {
 		showResult(e.target.textContent);
@@ -126,6 +130,7 @@ function btnListener(e) {
 		addDecimal();
 	}
 }
+// Слідкування за подіями кнопок клавіатури
 function keyboardListener(e) {
 	if (e.shiftKey && e.code) {
 		const arrObjects = [
@@ -170,6 +175,8 @@ function keyboardListener(e) {
 addEventListener('keyup', keyboardListener);
 btnContainer.addEventListener('click', btnListener);
 
+
+// Текстовий слайдер-презентація
 let titleChangeCounter = 0, h1 = getSelector('h1').innerHTML, h2 = getSelector('h2').innerHTML;
 const changeText = (arg1, arg2) => {
 	let h1Title = getSelector('h1'), h2Title = getSelector('h2');

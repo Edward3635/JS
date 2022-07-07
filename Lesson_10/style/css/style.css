@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
   font-family: "Roboto", sans-serif;
-  background: url(../../img/background1.jpg) no-repeat;
+  background: url(../../img/background1.jpg) no-repeat, #54777b;
   background-size: cover;
 }
 
@@ -97,11 +97,6 @@ h1,
 h2 {
   opacity: 0;
   transition: opacity 1s;
-}
-
-.main {
-  background: url(../../img/background1.jpg) no-repeat;
-  background-size: cover;
 }
 
 .main__container {
