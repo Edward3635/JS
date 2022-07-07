@@ -72,3 +72,7 @@ body {
   background: url(../../img/background1.jpg) no-repeat, #54777b;
   background-size: cover;
 }
+
+.minesweeper {
+  color: #000;
+}
