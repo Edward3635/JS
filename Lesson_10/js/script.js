@@ -166,13 +166,34 @@ function keyboardListener(e) {
 		});
 	}
 }
-alert('Клавіатура теж працює.');
 
 addEventListener('keyup', keyboardListener);
 btnContainer.addEventListener('click', btnListener);
-/*
-const arr = [getSelector('.number0'), getSelector('.number1'), getSelector('.number2'), getSelector('.number3'),
-getSelector('.number4'), getSelector('.number5'), getSelector('.number6'), getSelector('.number7'), getSelector('.number8'),
-getSelector('.number9'), getSelector('.ac'), getSelector('.pm'), getSelector('.percent'), getSelector('.division'),
-getSelector('.multiply'), getSelector('.subtraction'), getSelector('.addition'), getSelector('.decimal'), getSelector('.equal')];
-*/
+
+let titleChangeCounter = 0, h1 = getSelector('h1').innerHTML, h2 = getSelector('h2').innerHTML;
+const changeText = (arg1, arg2) => {
+	let h1Title = getSelector('h1'), h2Title = getSelector('h2');
+	h1Title.className = '';
+	h2Title.className = '';
+	setTimeout(() => {
+		h1Title.innerHTML = arg1;
+		h2Title.innerHTML = arg2;
+		h1Title.className = 'show';
+		h2Title.className = 'show';
+	}, 900);
+};
+setInterval(() => {
+	if (titleChangeCounter === 0) {
+		changeText('', 'Функціональна клавіатура');
+		titleChangeCounter++;
+	} else if (titleChangeCounter === 1) {
+		changeText('', 'Годинник у реальному часі');
+		titleChangeCounter++;
+	} else if (titleChangeCounter === 2) {
+		changeText('', 'Максимально наближено до реальності');
+		titleChangeCounter++;
+	} else {
+		changeText(h1, h2);
+		titleChangeCounter = 0;
+	}
+}, 10000);
