@@ -79,7 +79,7 @@ body {
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding-top: 35px;
+  padding: 35px 0;
 }
 
 .main .flex__block {
@@ -301,7 +301,11 @@ body {
 @media (max-width: 669px) {
   .main .flex__block {
     flex-direction: column;
-    align-items: center;
     justify-content: unset;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .main__content {
+    padding-left: 0;
   }
 }
