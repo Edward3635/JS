@@ -139,6 +139,12 @@ body {
   transition: all 0.4s;
 }
 
+@media (max-width: 669px) {
+  .main__content .classwork .calculator .buttons .btn__calc {
+    font-size: 2rem;
+  }
+}
+
 .main__content .classwork .calculator .buttons .btn__calc:hover {
   transform: scale(1.02, 1.02);
   transition: all 0.4s;
@@ -290,4 +296,12 @@ body {
 .main__content .slider .slider-item img {
   border-radius: 30px;
   max-width: 100%;
+}
+
+@media (max-width: 669px) {
+  .main .flex__block {
+    flex-direction: column;
+    align-items: center;
+    justify-content: unset;
+  }
 }
