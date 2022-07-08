@@ -61,7 +61,12 @@ h1 {
 			}
 		}
 		.bg__bomb {
-			background: url(../../img/bomb.png) center/ cover;
+			background: url(../../img/bomb.png) center/ cover, red;
+		}
+		.bg__nobomb {
+			background-color: springgreen;
+			font-weight: 600;
+			font-size: 2rem;
 		}
 		.btn__cell {
 			&:hover {

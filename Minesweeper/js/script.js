@@ -2,7 +2,7 @@
 /// Користувацька функція для отримання елементу сторінки по id/class/tag.
 const getSelector = arg => document.querySelector(arg);
 
-startGame(8, 8, 30);
+startGame(8, 8, 50);
 
 function startGame(width, height, bombsNumber) {
 	const field = getSelector('.grid__field'), cellsCount = width * height;
@@ -19,10 +19,27 @@ function startGame(width, height, bombsNumber) {
 		e.target.classList.remove('btn__cell');
 		open(row, column);
 	});
+
+	function getCount(row, column) {
+		let count = 0;
+		for (let x = -1; x <= 1; x++) {
+			for (let y = -1; y <= 1; y++) {
+				if (isBomb(row + y, column + x)) {
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+
 	function open(row, column) {
 		const index = row * width + column, cell = cells[index];
-		cell = isBomb(row, column) ? cell.classList.add('bg__bomb') : cell.ouuterHTML = ' ';
-		cell.disabled = true;
+		if (isBomb(row, column)) {
+			cell.className = 'bg__bomb';
+		} else {
+			cell.innerHTML = getCount(row, column);
+			cell.className = 'bg__nobomb';
+		}
 	}
 	function isBomb(row, column) {
 		const index = row * width + column;

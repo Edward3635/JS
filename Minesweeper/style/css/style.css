@@ -137,7 +137,13 @@ h1 {
 }
 
 .minesweeper .grid__field .bg__bomb {
-  background: url(../../img/bomb.png) center/cover;
+  background: url(../../img/bomb.png) center/cover, red;
+}
+
+.minesweeper .grid__field .bg__nobomb {
+  background-color: springgreen;
+  font-weight: 600;
+  font-size: 2rem;
 }
 
 .minesweeper .grid__field .btn__cell:hover {
