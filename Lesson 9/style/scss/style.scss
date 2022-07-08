@@ -57,6 +57,9 @@ body {
 						font-size: 2.7rem;
 						font-family: sans-serif;
 						transition: all 0.4s;
+						@media (max-width: 669px) {
+							font-size: 2rem;
+						}
 						&:hover {
 							transform: scale(1.02, 1.02);
 							transition: all 0.4s;
@@ -196,6 +199,15 @@ body {
 					max-width: 100%;
 				}
 			}
+		}
+	}
+}
+@media (max-width: 669px) {
+	.main {
+		.flex__block {
+			flex-direction: column;
+			align-items: center;
+			justify-content: unset;
 		}
 	}
 }
