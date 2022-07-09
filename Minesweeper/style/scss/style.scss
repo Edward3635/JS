@@ -1,52 +1,91 @@
 @import "./reset";
 
 body {
+	font-family: sans-serif;
 	background: url(../../img/background1.jpg) no-repeat, #54777b;
 	background-size: cover;
 }
 h1 {
-	font-size: 2.5rem;
+	font-size: 2.4rem;
 	font-weight: bold;
 	color: rgb(250, 209, 133);
+}
+h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 1.4;
+	color: #fff;
 }
 
 .main {
 	&__container {
 		max-width: 650px;
 		margin: 0 auto;
-		padding-top: 30px;
+		padding-top: 15px;
 	}
 	&__content {
-		padding: 10px 0;
-		background-color: #847364;
+		padding-bottom: 10px;
 		border-radius: 40px;
+		background-color: #847364;
 	}
 	&__title {
 		> h1 {
 			padding-top: 10px;
-			margin-bottom: 15px;
+		}
+		> h2 {
+			max-width: 500px;
+			margin: 0 auto;
+			transition: all 0.5s;
+		}
+		> h1,
+		h2 {
 			text-align: center;
+			margin-bottom: 5px;
 			text-shadow: 2px 2px black;
 		}
 	}
 }
 .minesweeper {
 	margin-bottom: 15px;
+	.start__game {
+		font-size: 2.2rem;
+		font-weight: 600;
+		display: block;
+		margin: 20px auto 0 auto;
+		padding: 8px 30px;
+		transition: all 0.25s;
+		letter-spacing: 5px;
+		color: rgb(66, 58, 58);
+		border: 2px solid ghostwhite;
+		border-radius: 10px;
+		background-color: rgb(82, 202, 82);
+		&:hover {
+			transition: all 0.25s;
+			color: #fff;
+			filter: brightness(1.15);
+		}
+		&:active {
+			transition: all scale 0.25s;
+			transform: scale(0.98, 0.98);
+		}
+	}
 	.grid__field {
-		margin: 0 auto;
-		width: fit-content;
-		border-radius: 20px;
-		box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+		transition: all 1s;
 		display: grid;
 		grid-template-columns: repeat(8, 60px);
+		width: fit-content;
+		margin: 0 auto;
+
 		border: 1px solid gray;
+		border-radius: 20px;
+		box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
 		> button {
-			//background: url(../../img/bomb.png);
-			height: 60px;
 			font-size: 24px;
-			border: 1px solid gray;
-			background-color: rgb(255, 240, 213);
+
+			height: 60px;
 			transition: all 0.4s;
+			border: 1px solid gray;
+			background-color: rgb(249, 228, 189);
 			&:first-child {
 				border-top-left-radius: 10px;
 			}
@@ -60,18 +99,25 @@ h1 {
 				border-bottom-right-radius: 10px;
 			}
 		}
-		.bg__bomb {
-			background: url(../../img/bomb.png) center/ cover, red;
+		.bomb__redcell {
+			background: url(../../img/bomb.png) center/ cover, rgb(255, 91, 91);
 		}
-		.bg__nobomb {
-			background-color: springgreen;
-			font-weight: 600;
+		.bomb__cell {
+			background: url(../../img/bomb.png) center/ cover, white;
+		}
+		.nobomb__cell {
 			font-size: 2rem;
+			font-weight: 600;
+
+			background-color: springgreen;
+		}
+		.empty__cell {
+			background-color: #ffff7d;
 		}
 		.btn__cell {
 			&:hover {
-				transform: scale(0.97, 0.97);
 				transition: scale 0.5s;
+				transform: scale(0.97, 0.97);
 			}
 			&:active {
 				filter: brightness(0.8);

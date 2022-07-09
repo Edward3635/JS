@@ -69,32 +69,50 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
+  font-family: sans-serif;
   background: url(../../img/background1.jpg) no-repeat, #54777b;
   background-size: cover;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   font-weight: bold;
   color: #fad185;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #fff;
 }
 
 .main__container {
   max-width: 650px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .main__content {
-  padding: 10px 0;
-  background-color: #847364;
+  padding-bottom: 10px;
   border-radius: 40px;
+  background-color: #847364;
 }
 
 .main__title > h1 {
   padding-top: 10px;
-  margin-bottom: 15px;
+}
+
+.main__title > h2 {
+  max-width: 500px;
+  margin: 0 auto;
+  transition: all 0.5s;
+}
+
+.main__title > h1,
+.main__title h2 {
   text-align: center;
+  margin-bottom: 5px;
   text-shadow: 2px 2px black;
 }
 
@@ -102,22 +120,48 @@ h1 {
   margin-bottom: 15px;
 }
 
+.minesweeper .start__game {
+  font-size: 2.2rem;
+  font-weight: 600;
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 8px 30px;
+  transition: all 0.25s;
+  letter-spacing: 5px;
+  color: #423a3a;
+  border: 2px solid ghostwhite;
+  border-radius: 10px;
+  background-color: #52ca52;
+}
+
+.minesweeper .start__game:hover {
+  transition: all 0.25s;
+  color: #fff;
+  filter: brightness(1.15);
+}
+
+.minesweeper .start__game:active {
+  transition: all scale 0.25s;
+  transform: scale(0.98, 0.98);
+}
+
 .minesweeper .grid__field {
-  margin: 0 auto;
-  width: fit-content;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  transition: all 1s;
   display: grid;
   grid-template-columns: repeat(8, 60px);
+  width: fit-content;
+  margin: 0 auto;
   border: 1px solid gray;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
 }
 
 .minesweeper .grid__field > button {
-  height: 60px;
   font-size: 24px;
-  border: 1px solid gray;
-  background-color: #fff0d5;
+  height: 60px;
   transition: all 0.4s;
+  border: 1px solid gray;
+  background-color: #f9e4bd;
 }
 
 .minesweeper .grid__field > button:first-child {
@@ -136,19 +180,27 @@ h1 {
   border-bottom-right-radius: 10px;
 }
 
-.minesweeper .grid__field .bg__bomb {
-  background: url(../../img/bomb.png) center/cover, red;
+.minesweeper .grid__field .bomb__redcell {
+  background: url(../../img/bomb.png) center/cover, #ff5b5b;
 }
 
-.minesweeper .grid__field .bg__nobomb {
-  background-color: springgreen;
-  font-weight: 600;
+.minesweeper .grid__field .bomb__cell {
+  background: url(../../img/bomb.png) center/cover, white;
+}
+
+.minesweeper .grid__field .nobomb__cell {
   font-size: 2rem;
+  font-weight: 600;
+  background-color: springgreen;
+}
+
+.minesweeper .grid__field .empty__cell {
+  background-color: #ffff7d;
 }
 
 .minesweeper .grid__field .btn__cell:hover {
-  transform: scale(0.97, 0.97);
   transition: scale 0.5s;
+  transform: scale(0.97, 0.97);
 }
 
 .minesweeper .grid__field .btn__cell:active {
