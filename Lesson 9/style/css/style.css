@@ -98,32 +98,32 @@ body {
   flex-grow: 0.21;
 }
 
-.main__content .classwork .calculator {
+.main__content .classwork .stopwatch {
   max-width: 300px;
   background-color: #000;
   border-radius: 9px;
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.75);
 }
 
-.main__content .classwork .calculator .display {
+.main__content .classwork .stopwatch .display {
   max-width: 88%;
   margin: 0 auto;
   padding-top: 20px;
 }
 
-.main__content .classwork .calculator .display__container {
+.main__content .classwork .stopwatch .display__container {
   background-color: gray;
   padding: 35px;
 }
 
-.main__content .classwork .calculator .display__text {
+.main__content .classwork .stopwatch .display__text {
   font-size: 4rem;
   font-weight: 600;
   max-width: 150px;
   margin: 0 auto;
 }
 
-.main__content .classwork .calculator .buttons {
+.main__content .classwork .stopwatch .buttons {
   max-width: 88%;
   margin: 0 auto;
   padding: 25px 0 20px;
@@ -131,7 +131,7 @@ body {
   justify-content: space-between;
 }
 
-.main__content .classwork .calculator .buttons .btn__calc {
+.main__content .classwork .stopwatch .buttons .btn__watch {
   color: #fff;
   background-color: #000;
   font-size: 2.7rem;
@@ -140,17 +140,17 @@ body {
 }
 
 @media (max-width: 669px) {
-  .main__content .classwork .calculator .buttons .btn__calc {
+  .main__content .classwork .stopwatch .buttons .btn__watch {
     font-size: 2rem;
   }
 }
 
-.main__content .classwork .calculator .buttons .btn__calc:hover {
+.main__content .classwork .stopwatch .buttons .btn__watch:hover {
   transform: scale(1.02, 1.02);
   transition: all 0.4s;
 }
 
-.main__content .classwork .calculator .buttons .btn__calc:active {
+.main__content .classwork .stopwatch .buttons .btn__watch:active {
   transform: scale(0.98, 0.98);
   transition: all 0.4s;
 }
