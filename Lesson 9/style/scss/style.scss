@@ -25,7 +25,7 @@ body {
 		border-radius: 40px;
 		.classwork {
 			flex-grow: 0.21;
-			.calculator {
+			.stopwatch {
 				max-width: 300px;
 				background-color: #000;
 				border-radius: 9px;
@@ -51,7 +51,7 @@ body {
 					padding: 25px 0 20px;
 					display: flex;
 					justify-content: space-between;
-					.btn__calc {
+					.btn__watch {
 						color: #fff;
 						background-color: #000;
 						font-size: 2.7rem;
