@@ -56,6 +56,14 @@ h3 {
 			order: 3;
 		}
 	}
+	.timer {
+		padding-right: 17px;
+		text-align: center;
+		font-size: 1.2rem;
+		color: #fff;
+		text-shadow: 2px 2px black;
+		display: none;
+	}
 }
 .minesweeper {
 	.start__game {
@@ -144,7 +152,7 @@ h3 {
 		margin: 10px auto 0 auto;
 		padding: 4px 15px;
 		transition: all 0.25s;
-		transition: opacity 1s;
+		transition: opacity 0.5s;
 		opacity: 0;
 		color: rgb(66, 58, 58);
 		border: 2px solid ghostwhite;
