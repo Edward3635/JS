@@ -22,7 +22,7 @@ function startListener() {
 
 		setInterval(() => {
 			if (isStart === true) {
-				startGame(8, 8, 12);
+				startGame(8, 8, 10);
 				isStart = false;
 			}
 		}, 300);
@@ -43,7 +43,7 @@ function startGame(width, height, bombsNumber) {
 	getSelector('.current__flag-count').innerHTML = currentFlagCount;
 	const maxFlagCount = getSelector('.max__flag-count').innerHTML = bombsNumber;
 
-	const bombs = [...Array(cellsCount).keys()].sort(() => Math.random() - 0.5).slice(0, bombsNumber);
+	let bombs = [...Array(cellsCount).keys()].sort(() => Math.random() - 0.5).slice(0, bombsNumber);
 	const fieldClickListener = e => {
 		if (e.target.tagName !== 'BUTTON') {
 			return;
@@ -105,8 +105,13 @@ function startGame(width, height, bombsNumber) {
 	}
 
 	function open(row, column) {
+
 		if (!isValid(row, column)) return;
 		if (closedCount === cellsCount) {
+
+			getSelector('.timer').style.display = 'block';
+			intervalHandler = setInterval(timer, 1000);
+
 			const restartGame = getSelector('.restart__game');
 			restartGame.style.display = 'block';
 			restartGame.style.visibility = 'unset';
@@ -129,34 +134,37 @@ function startGame(width, height, bombsNumber) {
 
 			});
 		}
-		if (closedCount === cellsCount) {
-			getSelector('.timer').style.display = 'block';
-			intervalHandler = setInterval(timer, 1000);
-		}
 		const index = row * width + column;
 		let cell = cells[index];
 		if (cell.disabled === true) return;
 		cell.disabled = true;
 		if (isBomb(row, column)) {
-			clearInterval(intervalHandler);
-			h2.innerHTML = 'You lose!';
-			h2.style.color = 'red';
-			h2.style.display = 'block';
-			setTimeout(() => h2.style.opacity = '1', 400);
-			h2.style.margin = '0px';
-			mainTitle.style.margin = '0 auto';
-			mainTitle.style.maxWidth = '450px';
-			bombs.forEach(el => {
-				cell = cells[el];
-				cell.className = 'bomb__cell';
-			});
-			cells[index].className = 'bomb__redcell';
-			cells.forEach(el => {
-				el.disabled = true;
-				el.classList.remove('btn__cell');
+			if (closedCount === cellsCount) {
+				do {
+					bombs = [...Array(cellsCount).keys()].sort(() => Math.random() - 0.5).slice(0, bombsNumber);
+				} while (isBomb(row, column));
 
-			});
-			return;
+			} else {
+				clearInterval(intervalHandler);
+				h2.innerHTML = 'You lose!';
+				h2.style.color = 'red';
+				h2.style.display = 'block';
+				setTimeout(() => h2.style.opacity = '1', 400);
+				h2.style.margin = '0px';
+				mainTitle.style.margin = '0 auto';
+				mainTitle.style.maxWidth = '450px';
+				bombs.forEach(el => {
+					cell = cells[el];
+					cell.className = 'bomb__cell';
+				});
+				cells[index].className = 'bomb__redcell';
+				cells.forEach(el => {
+					el.disabled = true;
+					el.classList.remove('btn__cell');
+
+				});
+				return;
+			}
 		}
 
 
