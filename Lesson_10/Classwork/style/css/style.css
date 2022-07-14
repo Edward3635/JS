@@ -93,9 +93,9 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  min-height: 238px;
+  min-height: 125px;
 }
 
 .main__content .phone__form .phone__title {
@@ -116,24 +116,25 @@ body {
 .main__content .phone__form .save {
   display: block;
   width: fit-content;
+  margin-bottom: 10px;
   color: #fff;
-  padding: 10px 98px;
+  padding: 10px 75px;
   font-size: 2rem;
   font-weight: 600;
   transition: all 0.25s;
   background-color: #1e90ff;
-  border-radius: 3px;
+  border-radius: 7px;
   opacity: 1;
 }
 
 .main__content .phone__form .save:hover {
   opacity: 0.9;
-  transform: scale(1.03, 1.03);
+  transform: scale(0.98, 0.98);
   transition: all 0.25s;
 }
 
 .main__content .phone__form .save:active {
-  transform: scale(0.97, 0.97);
+  transform: scale(0.95, 0.95);
   transition: all 0.25s;
 }
 

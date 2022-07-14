@@ -10,6 +10,29 @@ const getSelector = element => document.querySelector(element),
 https://risovach.ru/upload/2013/03/mem/toni-stark_13447470_big_.jpeg если будет ошибка отобразите её в <div> до input.
 */
 
+const warnTitle = getSelector('.warn__title'), phoneForm = getSelector('.phone__form');
+phoneForm.insertAdjacentHTML('beforeend',
+	'<div><input class="input__phone" type="number" id="phone" placeholder="000-000-00-00"></div>');
+phoneForm.insertAdjacentHTML('beforeend', '<button class="save">Зберегти</button>');
+const savePhone = getSelector('.save'), inputNumber = getSelector('.input__phone');
+
+savePhone.addEventListener('click', () => {
+	if (inputNumber.value != 0) {
+		inputNumber.style.backgroundColor = 'green';
+		setTimeout(() => {
+			document.location = 'https://risovach.ru/upload/2013/03/mem/toni-stark_13447470_big_.jpeg';
+		}, 1000);
+	} else {
+		warnTitle.style.display = 'block';
+		warnTitle.innerHTML = 'Помилка';
+		setTimeout(() => {
+			warnTitle.style.display = 'none';
+		}, 3000);
+	}
+
+
+});
+
 
 
 /* 
