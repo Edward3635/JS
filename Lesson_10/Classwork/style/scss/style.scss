@@ -1,0 +1,145 @@
+@import "./reset";
+
+html {
+	font-size: 10px;
+}
+
+body {
+	background-color: #cda786;
+}
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 35px 0;
+}
+.main {
+	&__content {
+		padding: 30px;
+		background-color: #ffdab9;
+		border-radius: 40px;
+		.phone__form {
+			max-width: fit-content;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			min-height: 238px;
+			.phone__title {
+				text-align: center;
+				max-width: 235px;
+				font-size: 2rem;
+				font-weight: bold;
+			}
+			.input__phone {
+				border: 1px solid #adadad;
+				border-radius: 2px;
+				font-size: 1.8rem;
+				height: 40px;
+				padding-left: 10px;
+			}
+			.save {
+				display: block;
+				width: fit-content;
+				color: #fff;
+				padding: 10px 98px;
+				font-size: 2rem;
+				font-weight: 600;
+				transition: all 0.25s;
+				background-color: #1e90ff;
+				border-radius: 3px;
+				opacity: 1;
+				&:hover {
+					opacity: 0.9;
+					transform: scale(1.03, 1.03);
+					transition: all 0.25s;
+				}
+				&:active {
+					transform: scale(0.97, 0.97);
+					transition: all 0.25s;
+				}
+			}
+			input:focus {
+				&::placeholder {
+					color: white;
+				}
+			}
+			.warn__title {
+				color: red;
+				padding: 5px 0;
+				max-width: 235px;
+				line-height: 1.1;
+				font-size: 1.5rem;
+				display: none;
+			}
+		}
+		.slider {
+			&__container {
+				border-radius: 30px;
+				margin: 0 auto;
+				max-width: 600px;
+				overflow: hidden;
+				position: relative;
+				.image {
+					max-width: 600px;
+					border-radius: 30px;
+				}
+
+				.images-wrapper {
+					display: flex;
+					gap: 15px;
+				}
+			}
+			.slider__next,
+			.slider__prev {
+				position: absolute;
+				background: none;
+				top: 0;
+				bottom: 0;
+				padding: 0 8px;
+				width: fit-content;
+				color: #fff;
+				opacity: 0.7;
+				font-size: 40px;
+				&:hover {
+					opacity: 1;
+					background-color: rgba(0, 0, 0, 0.2);
+				}
+			}
+			.slider__prev {
+				left: 0;
+			}
+			.slider__next {
+				right: 0;
+			}
+			.control__buttons {
+				text-align: center;
+				.btn__start,
+				.btn__stop {
+					margin: 20px auto 0 auto;
+					width: 180px;
+					height: 60px;
+					padding: 10px;
+					border: 2px solid #ffffff;
+					font-size: 2rem;
+					font-weight: 600;
+					transition: all 0.25s;
+					border-radius: 20px;
+					background-color: rebeccapurple;
+					&:hover {
+						background: red;
+						color: #fff;
+						transition: all 0.25s;
+					}
+					&:active {
+						transform: scale(0.98, 0.98);
+						transition: all 0.25s;
+					}
+				}
+				.btn__start {
+					margin-right: 170px;
+				}
+			}
+		}
+	}
+}
