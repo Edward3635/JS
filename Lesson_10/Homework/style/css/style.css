@@ -147,6 +147,7 @@ body {
   height: 10px;
   border-radius: 50px;
   background-color: gray;
+  transition: all 1.3s;
 }
 
 .main__content .slider .bubble__buttons > .bubble__button:not(:last-child) {
@@ -155,7 +156,6 @@ body {
 
 .main__content .slider .bubble__buttons .bubble__active {
   background-color: #d4dbc4;
-  border: 1px solid #4a4545;
 }
 
 .main__content .slider .control__buttons {

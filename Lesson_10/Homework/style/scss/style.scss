@@ -68,6 +68,7 @@ body {
 					height: 10px;
 					border-radius: 50px;
 					background-color: gray;
+					transition: all 1.3s;
 
 					&:not(:last-child) {
 						margin-right: 5px;
@@ -75,7 +76,6 @@ body {
 				}
 				.bubble__active {
 					background-color: rgb(212, 219, 196);
-					border: 1px solid rgb(74, 69, 69);
 				}
 			}
 			.control__buttons {
