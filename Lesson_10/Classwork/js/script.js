@@ -5,35 +5,40 @@ const getSelector = element => document.querySelector(element),
 Реализуйте программу проверки телефона используя DOM Level 2
 Используя JS Создайте поле для ввода телефона и кнопку сохранения
 Пользователь должен ввести номер телефона в формате 000-000-00-00
-Поле того как пользователь нажимает кнопку сохранить проверте правильность ввода номера.
+Поле того как пользователь нажимает кнопку сохранить проверьте правильность ввода номера.
 Если номер правильный сделайте зеленый фон и используя document.location переведите пользователя на страницу 
 https://risovach.ru/upload/2013/03/mem/toni-stark_13447470_big_.jpeg если будет ошибка отобразите её в <div> до input.
 */
 
 const warnTitle = getSelector('.warn__title'), phoneForm = getSelector('.phone__form');
 phoneForm.insertAdjacentHTML('beforeend',
-	'<div><input class="input__phone" type="number" id="phone" placeholder="000-000-00-00"></div>');
+	'<div><input class="input__phone" type="tel" id="phone" placeholder="000-000-00-00"></div>');
 phoneForm.insertAdjacentHTML('beforeend', '<button class="save">Зберегти</button>');
 const savePhone = getSelector('.save'), inputNumber = getSelector('.input__phone');
 
 savePhone.addEventListener('click', () => {
-	if (inputNumber.value != 0) {
-		inputNumber.style.backgroundColor = 'green';
-		setTimeout(() => {
-			document.location = 'https://risovach.ru/upload/2013/03/mem/toni-stark_13447470_big_.jpeg';
-		}, 1000);
+	if (Boolean(inputNumber.value) !== false) {
+		if (inputNumber.value.search(/\b\d{3}-\d{3}-\d{2}-\d{2}\b/g) != -1) {
+			inputNumber.style.backgroundColor = 'green';
+			setTimeout(() => {
+				document.location = 'https://risovach.ru/upload/2013/03/mem/toni-stark_13447470_big_.jpeg';
+			}, 1000);
+		} else {
+			warnTitle.style.display = 'block';
+			warnTitle.innerHTML = 'Помилка! Уведіть номер цифрами. Як у прикладі, через дефіс!';
+			inputNumber.value = '';
+			setTimeout(() => {
+				warnTitle.style.display = 'none';
+			}, 5000);
+		}
 	} else {
 		warnTitle.style.display = 'block';
-		warnTitle.innerHTML = 'Помилка';
+		warnTitle.innerHTML = 'Поле для вводу пусте!';
 		setTimeout(() => {
 			warnTitle.style.display = 'none';
-		}, 3000);
+		}, 5000);
 	}
-
-
 });
-
-
 
 /* 
 В папке 'banners' лежит HTML код и папка с картинками.
@@ -87,14 +92,14 @@ imgWrapper.addEventListener('transitionend', () => {
 	}
 });
 
-intervalHandler = setInterval(nextSlide, 3000);
+intervalHandler = setInterval(nextSlide, 10000);
 
 nextBtn.onclick = nextSlide;
 prevBtn.onclick = prevSlide;
 
 btnStart.addEventListener('click', () => {
 	if (isStart) {
-		intervalHandler = setInterval(nextSlide, 2000);
+		intervalHandler = setInterval(nextSlide, 10000);
 		isStart = false;
 	}
 });
