@@ -59,14 +59,14 @@ imgWrapper.addEventListener('transitionend', () => {
 	}
 });
 
-intervalHandler = setInterval(nextSlide, 6000);
+intervalHandler = setInterval(nextSlide, 2000);
 
 nextBtn.onclick = nextSlide;
 prevBtn.onclick = prevSlide;
 
 btnStart.addEventListener('click', () => {
 	if (isStart) {
-		intervalHandler = setInterval(nextSlide, 6000);
+		intervalHandler = setInterval(nextSlide, 2000);
 		isStart = false;
 	}
 });
@@ -114,6 +114,9 @@ bubbleButtons.addEventListener('click', (e) => {
 	if (e.target.classList.contains('bubble__active')) return;
 	arrayBubbleButtons.forEach((el, index) => {
 		if (el === e.target) {
+			//prevCounter = counter
+			//Якщо prevCounter === 5, а counter 1 то nextSlide(counter, kek), де kek = 7
+			//І навпаки.
 			counter = index;
 			nextSlide(counter);
 			return;
