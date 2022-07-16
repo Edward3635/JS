@@ -1,4 +1,4 @@
-/// Користувацька функція для отримання елементу сторінки по id/class/tag.
+// Користувацькі функції для отримання елементу(тів) сторінки по id/class/tag.
 const getSelector = element => document.querySelector(element),
 	getSelectorAll = element => document.querySelectorAll(element);
 
@@ -16,6 +16,7 @@ const getSelector = element => document.querySelector(element),
 а если нажать на `Next`, когда видимая - последняя картинка, то будет видна первая картинка.
 - Пример работы слайдера можно увидеть(http://kenwheeler.github.io/slick/) (первый пример).
 */
+// Ініціалізація змінних та отримання елементів по класу
 const imgWrapper = getSelector('.images-wrapper'), img = getSelectorAll('.image'), prevBtn = getSelector('.slider__prev'),
 	nextBtn = getSelector('.slider__next'), imgGap = parseFloat(getComputedStyle(imgWrapper).gap),
 	btnStart = getSelector('.btn__start'), btnStop = getSelector('.btn__stop'),
@@ -24,56 +25,80 @@ const imgWrapper = getSelector('.images-wrapper'), img = getSelectorAll('.image'
 let size, counter = 1, bubbleCounter = 0, intervalHandler, isStart = false;
 
 window.onload = () => {
+	// Після повного завантаження сторінки, з фотографіями включно, отримати ширину картинки.
 	size = img[0].clientWidth;
+	// Прокрутити imgWrapper на довжину ((-size - imgGap) * counter)px - (На довжину 1 слайду)
 	imgWrapper.style.transform = `translateX(${(-size - imgGap) * counter}px)`;
 };
 
+// Функція реалізації прокрутки слайдеру вліво
 function nextSlide(arg) {
+	// Якщо лічильник >= довжині масиву -1 - вихід із функції
 	if (counter >= img.length - 1) return;
+	// Додавання властивості transition
 	imgWrapper.style.transition = 'transform 0.8s ease-in-out';
+	// Збільшення лічильнику
 	counter++;
+	// Виклик функції переходу bubble buttons
 	bubbleButtonNextActive(arg);
+	// Переміщення imgWrapper
 	imgWrapper.style.transform = `translate(${(-size - imgGap) * counter}px)`;
 }
+// Функція реалізації прокрутки слайдеру вправо
 function prevSlide(arg) {
+	// Якщо лічильник <= 0, - вихід із функції
 	if (counter <= 0) return;
+	// Додавання властивості transition
 	imgWrapper.style.transition = 'transform 0.8s ease-in-out';
+	// Зменшення лічильнику
 	counter--;
+	// Виклик функції переходу bubble buttons
 	bubbleButtonPrevActive(arg);
+	// Переміщення imgWrapper
 	imgWrapper.style.transform = `translate(${(-size - imgGap) * counter}px)`;
 }
 
-
+// Слухач події на завершення переходу
 imgWrapper.addEventListener('transitionend', () => {
+	// Якщо елемент містить клас 'last', виконуємо наступне:
 	if (img[counter].classList.contains('last')) {
-
+		// вимикаємо transition
 		imgWrapper.style.transition = 'none';
+		// Змінюємо лічильник
 		counter = img.length - 2;
+		// Переміщаємо imgWrapper
 		imgWrapper.style.transform = `translate(${(-size - imgGap) * counter}px)`;
 	}
+	// Якщо елемент містить клас 'first', виконуємо наступне:
 	if (img[counter].classList.contains('first')) {
-
+		// вимикаємо transition
 		imgWrapper.style.transition = 'none';
+		// Змінюємо лічильник
 		counter = img.length - counter;
+		// Переміщаємо imgWrapper
 		imgWrapper.style.transform = `translate(${(-size - imgGap) * counter}px)`;
 	}
 });
 
+// Додавання інтервалу та слухачів подій
 intervalHandler = setInterval(nextSlide, 2000);
 
 nextBtn.onclick = nextSlide;
 prevBtn.onclick = prevSlide;
 
 btnStart.addEventListener('click', () => {
+	// По кліку на кнопку "Старт" запускається слайдер, якщо він був вимкнений
 	if (isStart) {
 		intervalHandler = setInterval(nextSlide, 2000);
 		isStart = false;
 	}
 });
 btnStop.addEventListener('click', () => {
+	// По кліку на кнопку "Стоп" зупиняється слайдер
 	isStart = true;
 	clearInterval(intervalHandler);
 });
+
 
 function bubbleButtonNextActive(index) {
 	arrayBubbleButtons[bubbleCounter].classList.remove('bubble__active');
