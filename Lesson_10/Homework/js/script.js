@@ -35,10 +35,14 @@ window.onload = () => {
 function nextSlide(arg) {
 	// Якщо лічильник >= довжині масиву -1 - вихід із функції
 	if (counter >= img.length - 1) return;
+
+
 	// Додавання властивості transition
 	imgWrapper.style.transition = 'transform 0.8s ease-in-out';
 	// Збільшення лічильнику
 	counter++;
+
+
 	// Виклик функції переходу bubble buttons
 	bubbleButtonNextActive(arg);
 	// Переміщення imgWrapper
@@ -81,7 +85,7 @@ imgWrapper.addEventListener('transitionend', () => {
 });
 
 // Додавання інтервалу та слухачів подій
-intervalHandler = setInterval(nextSlide, 2000);
+intervalHandler = setInterval(nextSlide, 14000);
 
 nextBtn.onclick = nextSlide;
 prevBtn.onclick = prevSlide;
@@ -155,15 +159,26 @@ function bubbleButtonPrevActive(index) {
 bubbleButtons.addEventListener('click', (e) => {
 	// Якщо кнопка бабл вже активна - вихід із функції
 	if (e.target.classList.contains('bubble__active')) return;
-	// foreach метод проходить по масиву, якщо знаходить збіг між натиснутою кнопкою та кнопкою в масиві - виконує дію 
+	// foreach метод проходить по масиву, якщо знаходить збіг між натиснутою кнопкою та кнопкою в масиві - виконує дію
 	arrayBubbleButtons.forEach((el, index) => {
 		if (el === e.target) {
-			//prevCounter = counter
-			//Якщо prevCounter === 5, а counter 1 то nextSlide(counter, kek), де kek = 7
-			//І навпаки.
+			let prevCounter = counter;
 			counter = index;
+
+			if (prevCounter === arrayBubbleButtons.length) {
+				if (counter === 0) {
+					counter = arrayBubbleButtons.length;
+					nextSlide(0);
+					return;
+				}
+			} else if (prevCounter === 1) {
+				if (counter === (arrayBubbleButtons.length - 1)) {
+					counter = 1;
+					prevSlide(arrayBubbleButtons.length - 1);
+					return;
+				}
+			}
 			nextSlide(counter);
-			return;
 
 		}
 	});
