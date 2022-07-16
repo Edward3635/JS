@@ -99,44 +99,63 @@ btnStop.addEventListener('click', () => {
 	clearInterval(intervalHandler);
 });
 
-
+// Функція активації наступного bubble button
 function bubbleButtonNextActive(index) {
+	// Видалення активного класу поточної кнопки
 	arrayBubbleButtons[bubbleCounter].classList.remove('bubble__active');
-
+	// Якщо аргументом є цифра, отже був клік по bubble button
 	if (typeof index == 'number') {
-		//alert('ok');
+		// Додати активний клас елементу масиву по отриманому індексу
 		arrayBubbleButtons[index].classList.add('bubble__active');
 		bubbleCounter = index;
 	} else {
-
+		// Інакше кліку по bubble button не було
+		// Якщо лічильник = останньому елементу, тобто arrayBubbleButtons.length - 1
 		if (bubbleCounter === arrayBubbleButtons.length - 1) {
+			// Додаємо клас до елементу з початку
+			// Обнулити лічильник
 			arrayBubbleButtons[0].classList.add('bubble__active');
 			bubbleCounter = 0;
 
 		} else {
+			// Інакше додати активний клас наступному елементу
 			arrayBubbleButtons[bubbleCounter + 1].classList.add('bubble__active');
+			// Збільшити лічильник
 			bubbleCounter++;
 		}
 	}
 }
+// Функція активації попереднього bubble button
 function bubbleButtonPrevActive(index) {
+	// Видалення активного класу поточної кнопки
 	arrayBubbleButtons[bubbleCounter].classList.remove('bubble__active');
+	// Якщо аргументом є цифра, отже був клік по bubble button
 	if (typeof index == 'number') {
+		// Додати активний клас елементу масиву по отриманому індексу
 		arrayBubbleButtons[index].classList.add('bubble__active');
 		bubbleCounter = index;
 	} else {
+		// Інакше кліку по bubble button не було
+		// Якщо лічильник = 0
 		if (bubbleCounter === 0) {
+			// Додаємо клас до елементу з кінця
+			// Лічильник = останньому елементу, тобто довжині масиву arrayBubleButtons - 1
 			arrayBubbleButtons[arrayBubbleButtons.length - 1].classList.add('bubble__active');
 			bubbleCounter = arrayBubbleButtons.length - 1;
 		} else {
+			// Інакше додати активний клас попередньому елементу
 			arrayBubbleButtons[bubbleCounter - 1].classList.add('bubble__active');
+			// Зменшити лічильник
 			bubbleCounter--;
 		}
 	}
 }
 
+// Слухач події на клік по будь-якій кнопці bubble
 bubbleButtons.addEventListener('click', (e) => {
+	// Якщо кнопка бабл вже активна - вихід із функції
 	if (e.target.classList.contains('bubble__active')) return;
+	// foreach метод проходить по масиву, якщо знаходить збіг між натиснутою кнопкою та кнопкою в масиві - виконує дію 
 	arrayBubbleButtons.forEach((el, index) => {
 		if (el === e.target) {
 			//prevCounter = counter

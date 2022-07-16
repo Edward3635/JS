@@ -5,6 +5,7 @@ const getSelector = arg => document.querySelector(arg),
 	getValueAsNum = (value) => Number(value.split(',').join(''));
 let valInMemory, operatorInMemory, valInMemoryCopy;
 
+// Вивід результату
 function setStrAsValue(str) {
 	if (str[str.length - 1] === '.') {
 		display.textContent += '.';
@@ -39,12 +40,16 @@ function executeResult(operator) {
 			operatorInMemory = '';
 		}
 	} else {
+		// Операція додавання
 		if (operatorInMemory === 'addition') {
 			display.textContent = (valInMemory + getValueAsNum(display.textContent)).toLocaleString('en-US');
+			// Операція віднімання
 		} else if (operatorInMemory === 'subtraction') {
 			display.textContent = (valInMemory - getValueAsNum(display.textContent)).toLocaleString('en-US');
+			// Операція множення
 		} else if (operatorInMemory === 'multiply') {
 			display.textContent = (valInMemory * getValueAsNum(display.textContent)).toLocaleString('en-US');
+			// Операція ділення
 		} else if (operatorInMemory === 'division') {
 			if (display.textContent === '0') {
 				display.textContent = 'error';
