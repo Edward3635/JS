@@ -198,7 +198,7 @@ bubbleButtons.addEventListener('click', (e) => {
 
 /*
 * Задание 2
-Написать реализацию функции, которая позволит создавать объекты типа Hamburger.
+Написать реализацию функции, которая позволит создавать объекты типа Hamburger,используя возможности стандарта ES5.
 
 Технические требования:
 - Некая сеть фастфудов предлагает два вида гамбургеров: 1) Маленький (50 гривен, 20 калорий) 2) Большой (100 гривен, 40 калорий).
@@ -212,9 +212,7 @@ bubbleButtons.addEventListener('click', (e) => {
 - Код должен быть защищен от ошибок. Представьте, что вашим классом будет пользоваться другой программист.
 Если он передает неправильный тип гамбургера, например, или неправильный вид добавки, должно выбрасываться исключение
 (ошибка не должна молча игнорироваться). https://learn.javascript.ru/try-catch
-- Написанный класс должен соответствовать следующему jsDoc описанию 
-(то есть содержать указанные методы, которые принимают и возвращают данные указанного типа и выбрасывают исключения указанного
-типа.)
+
 - Это задача на ООП. Вам нужно сделать класс, который получает на вход информацию о гамбургере, и на выходе дает информацию о
 весе и цене. Никакого взаимодействия с пользователем и внешним миром класс делать не должен - все нужные данные ему необходимо
 передать явно. Он ничего не будет спрашивать, и не будет ничего выводить.
@@ -222,4 +220,172 @@ bubbleButtons.addEventListener('click', (e) => {
 заниматься другие части кода. Иначе мы получим кашу, где разные функции смешаны вместе.
 - Типы начинок, размеры надо сделать константами. Никаких магических строк не должно быть.
 - Переданную информацию о параметрах гамбургера экземпляр класса хранит внутри в своих полях.
+- При неправильном использовании класс сообщает об этом с помощью выброса исключения.
 */
+function Hamburger(size, stuffing) {
+	this.ADDED__TOPPING__ARR = [];
+	try {
+		if (typeof size !== 'undefined' && typeof stuffing !== 'undefined') {
+			try {
+				if (Hamburger.SIZE__ARR.includes(size.name) && Hamburger.STUFFING__ARR.includes(stuffing.name)) {
+					this.size = size;
+					this.stuffing = stuffing;
+				} else {
+					throw new SyntaxError('invalid size');
+				}
+			} catch (e) {
+				console.error(`HamburgerException: ${e.message}`);
+			}
+		} else {
+			throw new SyntaxError('no size given or invalid parameters');
+		}
+	} catch (e) {
+		console.error(`HamburgerException: ${e.message}`);
+	}
+}
+
+Hamburger.SIZE_SMALL = {
+	name: 'Маленький',
+	cost: 50,
+	calorie: 20
+};
+Hamburger.SIZE_LARGE = {
+	name: 'Большой',
+	cost: 100,
+	calorie: 40
+};
+Hamburger.STUFFING_CHEESE = {
+	name: 'Сыр',
+	cost: 10,
+	calorie: 20
+};
+Hamburger.STUFFING_SALAD = {
+	name: 'Салат',
+	cost: 20,
+	calorie: 5
+};
+Hamburger.STUFFING_POTATO = {
+	name: 'Картофель',
+	cost: 15,
+	calorie: 10
+};
+Hamburger.TOPPING_MAYO = {
+	'constant': 'Hamburger.TOPPING_MAYO',
+	name: 'Майонез',
+	cost: 20,
+	calorie: 5
+};
+Hamburger.TOPPING_SPICE = {
+	'constant': 'Hamburger.TOPPING_SPICE',
+	name: 'Приправа',
+	cost: 15,
+	calorie: 0
+};
+Hamburger.TOPPING__ARR = ['Приправа', 'Майонез'];
+Hamburger.SIZE__ARR = ['Маленький', 'Большой'];
+Hamburger.STUFFING__ARR = ['Сыр', 'Салат', 'Картофель'];
+
+Hamburger.prototype.addTopping = function (topping) {
+	try {
+		if (Hamburger.TOPPING__ARR.includes(topping.name)) {
+			try {
+				if (!this.ADDED__TOPPING__ARR.includes(topping.constant)) {
+					this.ADDED__TOPPING__ARR.push(topping.constant);
+					return `${topping.name} added`;
+				} else {
+					throw new SyntaxError('duplicate topping ');
+				}
+			} catch (e) {
+				console.error(`HamburgerException: ${e.message}`);
+			}
+		} else {
+			throw new SyntaxError('Invalid parameter');
+		}
+	} catch (e) {
+		console.error(`HamburgerException: ${e.message}`);
+	}
+};
+Hamburger.prototype.removeTopping = function (topping) {
+	try {
+		if (Hamburger.TOPPING__ARR.includes(topping.name)) {
+			try {
+				if (this.ADDED__TOPPING__ARR.includes(topping.constant)) {
+					this.ADDED__TOPPING__ARR.splice(this.ADDED__TOPPING__ARR.indexOf(topping.constant), 1);
+					return `${topping.name} removed`;
+				} else {
+					throw new SyntaxError("topping doesn't exist");
+				}
+			} catch (e) {
+				console.error(`HamburgerException: ${e.message}`);
+			}
+		} else {
+			throw new SyntaxError('Переданий невірний параметр');
+		}
+	} catch (e) {
+		console.error(`HamburgerException: ${e.message}`);
+	}
+};
+Hamburger.prototype.test = [];
+Hamburger.prototype.getToppings = function () {
+	//const arrayAddedToppings = ['TOPPING_MAYO', 'TOPPING_SPICE'];
+	return this.ADDED__TOPPING__ARR.join(', ');
+};
+
+Hamburger.prototype.getSize = function () {
+	return `burger size: ${this.size.name}`;
+};
+
+Hamburger.prototype.getStuffing = function () {
+	return `burger stuffing: ${this.stuffing.name}`;
+};
+Hamburger.prototype.calculatePrice = function () {
+	var toppingCost = this.calcToppings('cost');
+	return `${this.size.name} burger (${this.size.cost}) with ${this.stuffing.name}(${this.stuffing.cost}) ` +
+		`+ topping(${toppingCost}) = ${this.size.cost + this.stuffing.cost + toppingCost} тугриков`;
+};
+Hamburger.prototype.calculateCalories = function () {
+	var toppingCalorie = this.calcToppings('cal');
+	return `${this.size.name} burger (${this.size.calorie}) with ${this.stuffing.name}(${this.stuffing.calorie}) ` +
+		`+ topping(${toppingCalorie}) = ${this.size.calorie + this.stuffing.calorie + toppingCalorie} calories`;
+};
+Hamburger.prototype.calcToppings = function (arg) {
+	var sumToppings = 0;
+	if (arg === 'cal') {
+		if (this.ADDED__TOPPING__ARR.length !== 0) {
+			if (this.ADDED__TOPPING__ARR.includes(Hamburger.TOPPING_SPICE.constant)) {
+				sumToppings += Hamburger.TOPPING_SPICE.calorie;
+			}
+			if (this.ADDED__TOPPING__ARR.includes(Hamburger.TOPPING_MAYO.constant)) {
+				sumToppings += Hamburger.TOPPING_MAYO.calorie;
+			}
+		}
+	} else if (arg === 'cost') {
+		if (this.ADDED__TOPPING__ARR.length !== 0) {
+			if (this.ADDED__TOPPING__ARR.includes(Hamburger.TOPPING_SPICE.constant)) {
+				sumToppings += Hamburger.TOPPING_SPICE.cost;
+			}
+			if (this.ADDED__TOPPING__ARR.includes(Hamburger.TOPPING_MAYO.constant)) {
+				sumToppings += Hamburger.TOPPING_MAYO.cost;
+			}
+		}
+	}
+	return sumToppings;
+};
+
+
+var myHamburger = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
+var hamburger = new Hamburger(Hamburger.SIZE_LARGE, Hamburger.STUFFING_SALAD);
+
+console.log(myHamburger.addTopping(Hamburger.TOPPING_SPICE));
+console.log(myHamburger.addTopping(Hamburger.TOPPING_MAYO));
+console.log(myHamburger.removeTopping(Hamburger.TOPPING_SPICE));
+// console.log(myHamburger.removeTopping(Hamburger.TOPPING_MAYO));
+console.log(myHamburger.getToppings());
+console.log(myHamburger.calculatePrice());
+console.log(myHamburger.calculateCalories());
+console.log(myHamburger.getToppings());
+console.log(hamburger.addTopping(Hamburger.TOPPING_MAYO));
+console.log(hamburger.addTopping(Hamburger.TOPPING_SPICE));
+console.log(hamburger.getToppings());
+console.log(hamburger.calculatePrice());
+console.log(hamburger.calculateCalories());
