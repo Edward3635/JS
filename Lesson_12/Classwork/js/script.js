@@ -9,3 +9,24 @@ const getSelector = arg => document.querySelector(arg);
 Дані які ввів клієнт ми зберігаємо в браузері, та після збереження показуємо дані на сторінці у вигляді таблиці,
 де мають бути показані тільки діючі клієнти.
 */
+const mainForm = getSelector('.main__form');
+mainForm.addEventListener('change', (e) => {
+	Validate(e.target);
+
+});
+
+function Validate(target) {
+	switch (target.id) {
+		case 'name': return /^[A-z]{2,}$/i.test(target.value);
+		case 'surname': return /^[А-я]{2,}$/i.test(target.value);
+		case 'age': return /^\d{1,2}$/i.test(target.value);
+		case 'tel': return /^\+380\d{9}$/i.test(target.value);
+		case 'index': return /^\d{5}$/i.test(target.value);
+	}
+}
+const btnSave = getSelector('input[type="button"]');
+btnSave.addEventListener('click', () => {
+	// if (!arr.includes(false)) {
+	// 	console.log('Ok!');
+	// }
+});

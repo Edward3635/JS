@@ -19,4 +19,43 @@ body {
 		background-color: #ffdab9;
 		border-radius: 40px;
 	}
+	&__form {
+		display: flex;
+		flex-direction: column;
+		max-width: 40%;
+		> input {
+			&:not(input[type="button"]) {
+				padding: 5px 0;
+				border: 1px solid #adadad;
+				border-radius: 4px;
+				font-size: 1.7rem;
+				margin-bottom: 12px;
+				padding-left: 10px;
+				&:focus {
+					border: 2px solid gray;
+					&::placeholder {
+						color: white;
+					}
+				}
+			}
+			&[type="button"] {
+				margin: 0 auto;
+				padding: 10px;
+				border: 1px solid #adadad;
+				letter-spacing: 4px;
+				border-radius: 4px;
+				color: #fff;
+				background-color: rgb(117, 153, 215);
+				font-size: 1.7rem;
+				transition: all 0.2s;
+				&:hover {
+					filter: brightness(1.2);
+					transform: scale(1.05, 1.05);
+				}
+				&:active {
+					filter: brightness(0.9);
+				}
+			}
+		}
+	}
 }
