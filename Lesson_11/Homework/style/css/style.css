@@ -75,3 +75,15 @@ html {
 body {
   background-color: #745d49;
 }
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 35px 0;
+}
+
+.main__content {
+  padding: 30px;
+  background-color: #ffdab9;
+  border-radius: 40px;
+}

@@ -68,10 +68,114 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
-html {
-  font-size: 10px;
-}
-
 body {
   background-color: #745d49;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 35px 0;
+}
+
+.main__content {
+  padding: 30px;
+  background-color: #ffdab9;
+  border-radius: 40px;
+}
+
+.main__content .span__price {
+  font-size: 1.3rem;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.main__content .btn__close {
+  font-size: 1.3rem;
+  padding: 0 7px;
+}
+
+.main__content .input__price {
+  display: block;
+  border: 1px solid #adadad;
+  border-radius: 4px;
+  font-size: 1.3rem;
+  height: 40px;
+  margin-bottom: 12px;
+  padding-left: 10px;
+}
+
+.main__content .input__price:focus::placeholder {
+  color: white;
+}
+
+.main__content .input__price + div {
+  font-style: 3rem;
+}
+
+.main__content .input__price-focus {
+  border: 2px solid #5fe95f;
+  color: #309030;
+}
+
+.main__content .error {
+  border: 2px solid red;
+}
+
+.main__content .task2 {
+  padding: 10px 0;
+}
+
+.main__content .task2 > ul > li {
+  padding: 5px 0;
+}
+
+.main__content .task3,
+.main__content .task4,
+.main__content .task5,
+.main__content .task6,
+.main__content .task7,
+.main__content .task8 {
+  margin-bottom: 25px;
+}
+
+.main__content .task4 > button {
+  font-size: 1.5rem;
+  padding: 2px 10px;
+}
+
+.main__content .task4 > button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.main__content .task6 {
+  max-width: fit-content;
+}
+
+.main__content .task6 > label {
+  display: block;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.main__content .task6 > input {
+  width: 150px;
+}
+
+.main__content .task7 > label,
+.main__content .task8 > label {
+  margin-right: 10px;
+}
+
+.main__content .task7 > input,
+.main__content .task8 > input {
+  padding: 5px 0 5px 10px;
+  margin-bottom: 10px;
+}
+
+.main__content .task7 h3,
+.main__content .task8 h3 {
+  padding-left: 107px;
+  font-size: 0.8rem;
 }
