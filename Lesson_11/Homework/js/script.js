@@ -49,16 +49,22 @@ window.addEventListener('keyup', (e) => {
 const discount = getSelector('.discount'), discContainer = getSelector('.discount__container'),
 	right = window.innerWidth - discContainer.offsetWidth, bottom = window.innerHeight - discContainer.offsetHeight;
 discContainer.addEventListener('mouseover', () => {
-	discContainer.style.bottom = `${getRandomInt(bottom - 90)}px`;
-	discContainer.style.right = `${getRandomInt(right)}px`;
+	const prevBottomVal = parseFloat(getComputedStyle(discContainer).bottom), prevRightVal =
+		parseFloat(getComputedStyle(discContainer).right);
+	discContainer.style.bottom = `${getRandomInt(bottom - 90, prevBottomVal)}px`;
+	discContainer.style.right = `${getRandomInt(right, prevRightVal)}px`;
 });
 discount.addEventListener('click', () => {
 	alert('Победа!');
 
 });
 
-function getRandomInt(max) {
-	return Math.floor(Math.random() * max);
+function getRandomInt(maxVal, prevVal) {
+	let res = Math.floor(Math.random() * maxVal);
+	while ((res > prevVal && res < prevVal + 200) || (res < prevVal && res > prevVal - 200)) {
+		res = Math.floor(Math.random() * maxVal);
+	}
+	return res;
 }
 /*
 Разработайте страницу, которая булет выводить сообщение "сохранить" при нажатии на клавиши Ctrl + S,
