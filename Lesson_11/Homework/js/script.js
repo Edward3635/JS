@@ -47,14 +47,13 @@ window.addEventListener('keyup', (e) => {
 Сделайте кнопку с надписью "Получить скидку". При наведении кнопка должна убегать от курсора не давая пользователю нажать себя
 */
 const discount = getSelector('.discount'), discContainer = getSelector('.discount__container'),
-	right = window.screen.width - discContainer.offsetWidth, bottom = window.screen.height - discContainer.offsetHeight;
+	right = window.innerWidth - discContainer.offsetWidth, bottom = window.innerHeight - discContainer.offsetHeight;
 discContainer.addEventListener('mouseover', () => {
-	console.log(bottom, right);
-	discContainer.style.bottom = `${getRandomInt(bottom - 140)}px`;
+	discContainer.style.bottom = `${getRandomInt(bottom - 90)}px`;
 	discContainer.style.right = `${getRandomInt(right)}px`;
 });
 discount.addEventListener('click', () => {
-	alert('Перемога!');
+	alert('Победа!');
 
 });
 
