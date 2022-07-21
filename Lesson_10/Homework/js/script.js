@@ -222,8 +222,11 @@ bubbleButtons.addEventListener('click', (e) => {
 - Переданную информацию о параметрах гамбургера экземпляр класса хранит внутри в своих полях.
 - При неправильном использовании класс сообщает об этом с помощью выброса исключения.
 */
+// Функція, що створює об'єкти типу гамбургера
 function Hamburger(size, stuffing) {
+	// Масив доданих додаткових начинок
 	this.ADDED__TOPPING__ARR = [];
+	// Відловлення помилок
 	try {
 		if (typeof size !== 'undefined' && typeof stuffing !== 'undefined') {
 			try {
@@ -243,7 +246,7 @@ function Hamburger(size, stuffing) {
 		console.error(`HamburgerException: ${e.message}`);
 	}
 }
-
+// Властивості об'єкту
 Hamburger.SIZE_SMALL = {
 	name: 'Маленький',
 	cost: 50,
@@ -281,9 +284,12 @@ Hamburger.TOPPING_SPICE = {
 	cost: 15,
 	calorie: 0
 };
+// масиви для зручності виконання наступних дій
 Hamburger.TOPPING__ARR = ['Приправа', 'Майонез'];
 Hamburger.SIZE__ARR = ['Маленький', 'Большой'];
 Hamburger.STUFFING__ARR = ['Сыр', 'Салат', 'Картофель'];
+
+// Методи на додавання\видалення додаткової начинки, отримання списку доданих начинок\розміру бургеру\основної начинки 
 
 Hamburger.prototype.addTopping = function (topping) {
 	try {
@@ -325,7 +331,6 @@ Hamburger.prototype.removeTopping = function (topping) {
 		console.error(`HamburgerException: ${e.message}`);
 	}
 };
-Hamburger.prototype.test = [];
 Hamburger.prototype.getToppings = function () {
 	//const arrayAddedToppings = ['TOPPING_MAYO', 'TOPPING_SPICE'];
 	return this.ADDED__TOPPING__ARR.join(', ');
@@ -338,6 +343,9 @@ Hamburger.prototype.getSize = function () {
 Hamburger.prototype.getStuffing = function () {
 	return `burger stuffing: ${this.stuffing.name}`;
 };
+
+// Методи що рахують ціну\калорії замовлення 
+
 Hamburger.prototype.calculatePrice = function () {
 	var toppingCost = this.calcToppings('cost');
 	return `${this.size.name} burger (${this.size.cost}) with ${this.stuffing.name}(${this.stuffing.cost}) ` +
@@ -348,6 +356,7 @@ Hamburger.prototype.calculateCalories = function () {
 	return `${this.size.name} burger (${this.size.calorie}) with ${this.stuffing.name}(${this.stuffing.calorie}) ` +
 		`+ topping(${toppingCalorie}) = ${this.size.calorie + this.stuffing.calorie + toppingCalorie} calories`;
 };
+// Допоміжний метод, для обрахування додаткоих начинок
 Hamburger.prototype.calcToppings = function (arg) {
 	var sumToppings = 0;
 	if (arg === 'cal') {
@@ -372,10 +381,11 @@ Hamburger.prototype.calcToppings = function (arg) {
 	return sumToppings;
 };
 
-
+// Створення екземплярів класу
 var myHamburger = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
 var hamburger = new Hamburger(Hamburger.SIZE_LARGE, Hamburger.STUFFING_SALAD);
 
+// Тест
 console.log(myHamburger.addTopping(Hamburger.TOPPING_SPICE));
 console.log(myHamburger.addTopping(Hamburger.TOPPING_MAYO));
 console.log(myHamburger.removeTopping(Hamburger.TOPPING_SPICE));
