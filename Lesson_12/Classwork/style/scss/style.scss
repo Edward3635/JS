@@ -19,8 +19,13 @@ body {
 		background-color: #ffdab9;
 		border-radius: 40px;
 	}
+	&__classwork {
+		display: flex;
+		justify-content: space-between;
+	}
 	&__form {
 		display: flex;
+		flex-grow: 1;
 		flex-direction: column;
 		max-width: 40%;
 		> input {
@@ -56,6 +61,27 @@ body {
 					filter: brightness(0.9);
 				}
 			}
+		}
+	}
+	.grid__data {
+		display: grid;
+		padding-top: 7px;
+		align-items: flex-start;
+		flex-grow: 0.25;
+		grid-template-columns: repeat(6, 0.7fr);
+		height: fit-content;
+		font-size: 1.7rem;
+		div:nth-child(-n + 6) {
+			font-weight: 600;
+		}
+		> div {
+			&:not(:nth-last-child(-n + 6)) {
+				margin-bottom: 26px;
+			}
+			text-align: center;
+		}
+		input[type="checkbox"] {
+			vertical-align: bottom;
 		}
 	}
 }

@@ -88,8 +88,14 @@ body {
   border-radius: 40px;
 }
 
+.main__classwork {
+  display: flex;
+  justify-content: space-between;
+}
+
 .main__form {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   max-width: 40%;
 }
@@ -130,4 +136,30 @@ body {
 
 .main__form > input[type="button"]:active {
   filter: brightness(0.9);
+}
+
+.main .grid__data {
+  display: grid;
+  padding-top: 7px;
+  align-items: flex-start;
+  flex-grow: 0.25;
+  grid-template-columns: repeat(6, 0.7fr);
+  height: fit-content;
+  font-size: 1.7rem;
+}
+
+.main .grid__data div:nth-child(-n + 6) {
+  font-weight: 600;
+}
+
+.main .grid__data > div {
+  text-align: center;
+}
+
+.main .grid__data > div:not(:nth-last-child(-n + 6)) {
+  margin-bottom: 26px;
+}
+
+.main .grid__data input[type="checkbox"] {
+  vertical-align: bottom;
 }
