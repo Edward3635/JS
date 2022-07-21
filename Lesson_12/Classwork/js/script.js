@@ -17,7 +17,16 @@ const getSelector = arg => document.querySelector(arg);
 
 const mainForm = getSelector('.main__form');
 mainForm.addEventListener('change', (e) => {
-	Validate(e.target);
+	//Validate(e.target);
+	if (!Validate(e.target)) {
+		e.target.insertAdjacentHTML('beforebegin', '<span class="mistake">Невірно вказані дані!</span>');
+		e.target.style.border = '2px solid red';
+	} else {
+		if (getSelector('.mistake')) {
+			e.target.style = '';
+			getSelector('.mistake').remove();
+		}
+	}
 
 });
 
@@ -34,12 +43,14 @@ function Validate(target) {
 }
 localStorage.user = JSON.stringify([]);
 const btnSave = getSelector('input[type="button"]');
-btnSave.addEventListener('click', () => {
+
+btnSave.addEventListener('click', (e) => {
 	const [...arrInputs] = document.querySelectorAll('.main__form > input:not(input[type="button"])');
 	const res = arrInputs.map(el => {
 		return Validate(el);
 	});
 	if (!res.includes(false)) {
+		localStorage.user = JSON.stringify([]);
 		let userData = JSON.parse(localStorage.user);
 		userData.push(
 			new User(
@@ -52,7 +63,11 @@ btnSave.addEventListener('click', () => {
 			createGrid();
 		}
 		createUserList();
-		localStorage.user = JSON.stringify([]);
+	} else {
+		e.target.insertAdjacentHTML('beforebegin', '<span class="mistake__save">Потрібно коректно заповнити всі поля!</span>');
+		setTimeout(() => {
+			getSelector('.mistake__save').remove();
+		}, 5000);
 	}
 });
 class User {

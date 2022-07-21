@@ -62,6 +62,13 @@ body {
 				}
 			}
 		}
+		.mistake,
+		.mistake__save {
+			font-size: 1.4rem;
+			color: red;
+			text-align: center;
+			margin-bottom: 7px;
+		}
 	}
 	.grid__data {
 		display: grid;

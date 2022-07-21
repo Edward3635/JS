@@ -138,6 +138,14 @@ body {
   filter: brightness(0.9);
 }
 
+.main__form .mistake,
+.main__form .mistake__save {
+  font-size: 1.4rem;
+  color: red;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
 .main .grid__data {
   display: grid;
   padding-top: 7px;
