@@ -16,8 +16,8 @@ const getSelector = arg => document.querySelector(arg);
 */
 
 const mainForm = getSelector('.main__form');
+// Слухач подій на зміну поля input
 mainForm.addEventListener('change', (e) => {
-	//Validate(e.target);
 	if (!Validate(e.target)) {
 		e.target.insertAdjacentHTML('beforebegin', '<span class="mistake">Невірно вказані дані!</span>');
 		e.target.style.border = '2px solid red';
@@ -30,6 +30,7 @@ mainForm.addEventListener('change', (e) => {
 
 });
 
+// Функція валідації вхідних даних
 function Validate(target) {
 	switch (target.id) {
 		case 'name': return /^[A-z]{2,}$/i.test(target.value);
@@ -43,7 +44,7 @@ function Validate(target) {
 }
 localStorage.user = JSON.stringify([]);
 const btnSave = getSelector('input[type="button"]');
-
+// Слухач подій на клік
 btnSave.addEventListener('click', (e) => {
 	const [...arrInputs] = document.querySelectorAll('.main__form > input:not(input[type="button"])');
 	const res = arrInputs.map(el => {
@@ -81,7 +82,7 @@ class User {
 		this.status = true;
 	}
 }
-
+// Вивід на сторінку вхідних даних з local.storage
 function createUserList() {
 	const currentUsers = JSON.parse(localStorage.user), gridData = getSelector('.grid__data');
 	currentUsers.forEach(el => {
@@ -94,7 +95,7 @@ function createUserList() {
 		}
 	});
 }
-
+// Функція на створення грід сітки
 function createGrid() {
 	getSelector('.main__form').insertAdjacentHTML('afterend', '<div class="grid__data"><div>Name</div><div>Surname</div>' +
 		'<div>Age</div><div>Phone</div><div>Index</div><div>Status</div></div>');

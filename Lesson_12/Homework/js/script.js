@@ -10,6 +10,7 @@
 */
 
 let keyInMemory;
+// Функція на змінення кольору кнопок
 function changeBtn(arr, key) {
 
 	if (keyInMemory) {
@@ -23,12 +24,16 @@ function changeBtn(arr, key) {
 	});
 }
 
+// Слухач на клавіатуру
 window.addEventListener('keyup', (e) => {
+	// Отримуємо список DOM-елементів
 	const [...buttons] = document.querySelectorAll('.btn'),
+		// Отримуємо список значень(textContent) DOM-елементів
 		[...btnNames] = buttons.map(el => {
 			return el.textContent;
 		});
 	let key;
+	// Якщо перші 3 букви Key то видаляємо їх для зручності порівнянь
 	if (e.code.slice(0, 3) === 'Key') {
 		key = e.code.slice(3);
 	} else key = e.code;
