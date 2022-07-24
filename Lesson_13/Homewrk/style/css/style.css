@@ -1,0 +1,214 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: url(../../img/bg.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 35px 0;
+}
+
+.main__content {
+  padding: 30px;
+  border-radius: 40px;
+}
+
+.main__cards {
+  font-size: 2.2rem;
+  position: relative;
+  max-width: 68%;
+  border-radius: 15px;
+}
+
+.main__cards .card__container {
+  width: 365px;
+  height: 295px;
+  perspective: 600px;
+  position: absolute;
+}
+
+.main__cards .card__container:first-child {
+  left: 0;
+}
+
+.main__cards .card__container:last-child {
+  right: 0;
+}
+
+.main__cards .card {
+  color: white;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 2px 5px 5px black;
+  cursor: pointer;
+}
+
+.main__cards .card:hover .back {
+  z-index: 3;
+  opacity: 0.8;
+}
+
+.main__cards .card .front {
+  background-size: cover;
+  z-index: 2;
+}
+
+.main__cards .card .back {
+  background: #333;
+}
+
+.main__cards .card .back ul:last-child {
+  padding-bottom: 100px;
+}
+
+.main__cards .card .back ul > li {
+  padding-bottom: 10px;
+}
+
+.main__cards .card .back ul > li:last-child {
+  text-align: center;
+}
+
+.main__cards .card .front,
+.main__cards .card .back {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  padding: 20px 0 0 15px;
+}
+
+.main__cards .card .btn__save {
+  padding: 5px 25px;
+  font-size: 2rem;
+  font-weight: 600;
+  border: 2px solid black;
+}
+
+.main__cards .card .btn__save:hover {
+  transform: scale(1.02, 1.02);
+}
+
+.main__cards .card .btn__save:active {
+  transform: scale(0.95, 0.95);
+}
+
+.main__cards .card1 {
+  background-image: url(../../img/1.jpg);
+}
+
+.main__cards .card2 {
+  background-image: url(../../img/2.jpg);
+}
+
+.main__cards .card3 {
+  background-image: url(../../img/3.jpg);
+}
+
+.main__cards .card4 {
+  background-image: url(../../img/4.jpg);
+}
+
+.main__cards .card5 {
+  background-image: url(../../img/5.jpg);
+}
+
+.main__cards .card6 {
+  background-image: url(../../img/6.jpg);
+}
+
+.main__cards .card7 {
+  background-image: url(../../img/7.jpg);
+}
+
+.main__cards .card8 {
+  background-image: url(../../img/8.jpg);
+}
+
+.main__cards .card9 {
+  background-image: url(../../img/9.jpg);
+}
+
+.main__cards .card10 {
+  background-image: url(../../img/10.jpg);
+}
