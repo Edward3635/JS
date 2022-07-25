@@ -14,10 +14,18 @@ data.then(response => response.json(), err => console.error(err))
 	.then(res => readArr(res.results));
 function readArr(arr) {
 	arr.forEach((el, index) => {
-		const { name, height, skin_color, birth_year, gender, homeworld } = el;
-		ul[index].insertAdjacentHTML('beforeend',
-			`<li>Name: ${name} </li><li>Gender: ${gender}</li><li>Height: ${height}cm</li><li>Skin color: ${skin_color}</li>` +
-			`<li>Birthday: ${birth_year}</li> <li>Homeworld: '${homeworld}'</li> <li><button class="btn__save">Save</button></li>`);
+		//const { name, height, skin_color, birth_year, gender, homeworld } = el;
+		const arr = ['name', 'height', 'skin_color', 'birth_year', 'gender', 'homeworld'];
+		for (let key in el) {
+			if (arr.includes(key)) {
+				let newKey = key[0].toUpperCase() + key.slice(1);
+				ul[index].insertAdjacentHTML('beforeend', `<li>${newKey}: ${el[key]}</li>`);
+			}
+		}
+		ul[index].insertAdjacentHTML('beforeend', `<li><button class="btn__save">Save</button></li>`);
+		// ul[index].insertAdjacentHTML('beforeend',
+		// 	`<li>Name: ${name} </li><li>Gender: ${gender}</li><li>Height: ${height}cm</li><li>Skin color: ${skin_color}</li>` +
+		// 	`<li>Birthday: ${birth_year}</li> <li>Homeworld: '${homeworld}'</li> <li><button class="btn__save">Save</button></li>`);
 	});
 	const mainCards = getSelector('.main__cards');
 	mainCards.addEventListener('click', (e) => {

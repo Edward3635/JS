@@ -122,16 +122,21 @@ body {
 }
 
 .main__cards .card:hover .back {
-  z-index: 3;
   opacity: 0.8;
+  transition: all 0.35s;
+}
+
+.main__cards .card:hover .front {
+  filter: brightness(0.7);
 }
 
 .main__cards .card .front {
   background-size: cover;
-  z-index: 2;
 }
 
 .main__cards .card .back {
+  transition: all 0.5s;
+  opacity: 0;
   background: #333;
 }
 

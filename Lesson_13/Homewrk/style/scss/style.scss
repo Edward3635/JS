@@ -48,15 +48,19 @@ body {
 			cursor: pointer;
 			&:hover {
 				.back {
-					z-index: 3;
 					opacity: 0.8;
+					transition: all 0.35s;
+				}
+				.front {
+					filter: brightness(0.7);
 				}
 			}
 			.front {
 				background-size: cover;
-				z-index: 2;
 			}
 			.back {
+				transition: all 0.5s;
+				opacity: 0;
 				background: #333;
 				ul:last-child {
 					padding-bottom: 100px;
