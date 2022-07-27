@@ -86,8 +86,12 @@ class User {
 function createUserList() {
 	const currentUsers = JSON.parse(localStorage.user), gridData = getSelector('.grid__data');
 	currentUsers.forEach(el => {
-		gridData.insertAdjacentHTML('beforeend', `<div>${el.name}</div><div>${el.surname}</div><div>${el.age}</div>` +
-			`<div>${el.phone}</div><div>${el.index}</div>`);
+		for (const key in el) {
+			if (key !== 'status') {
+				gridData.insertAdjacentHTML('beforeend', `<div>${el[key]}</div>`);
+			}
+
+		}
 		if (el.status) {
 			gridData.insertAdjacentHTML('beforeend', '<div><input type ="checkbox" checked></div>');
 		} else {
@@ -97,6 +101,12 @@ function createUserList() {
 }
 // Функція на створення грід сітки
 function createGrid() {
-	getSelector('.main__form').insertAdjacentHTML('afterend', '<div class="grid__data"><div>Name</div><div>Surname</div>' +
-		'<div>Age</div><div>Phone</div><div>Index</div><div>Status</div></div>');
+	const gridTitle = JSON.parse(localStorage.user);
+	getSelector('.main__form').insertAdjacentHTML('afterend', '<div class="grid__data"></div>');
+	gridTitle.forEach(el => {
+		for (const key in el) {
+			let newKey = key[0].toUpperCase() + key.slice(1);
+			getSelector('.grid__data').insertAdjacentHTML('beforeend', `<div>${newKey}</div>`);
+		}
+	});
 }
