@@ -179,6 +179,10 @@ input[type="radio"], input[type="checkbox"] {
 .table {
     position: relative;
     margin-right: 20px;
+	align-self: center;
+}
+.topping{
+	z-index: 1;
 }
 
 .hovered {
@@ -203,11 +207,10 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .result {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    padding: 3em;
+    display: grid;
+	grid-template-columns: repeat(3,1fr);
+	text-align: center;
+    padding: 1.6em 3em;
 }
 
 p {
@@ -336,6 +339,10 @@ footer > form > div > p {
     margin-top: -12px;
     text-transform: none;
     color: red;
+}
+.price__counter{
+	text-align: center;
+	padding-top: 10px;
 }
 
 @media screen and (max-width:600px) {
