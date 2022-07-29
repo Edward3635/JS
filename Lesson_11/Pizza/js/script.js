@@ -17,15 +17,20 @@ let sauceOrToppingSum = 0;
 Так же создайте банер получить скидку на пиццу 30% и сделайте чтобы банер от курсора пользователя убегал.
 */
 
+// Виклик функції слухачів подій
 pizzaListeners();
 
+//Функція, що містить в собі сліхачі подій на піцу
 function pizzaListeners() {
+	// Слухач на зміну радіокнопки (розмір піци)
 	pizzaSize.addEventListener('change', (e) => {
 		if (!e.target.classList.contains('radioIn')) {
 			return;
 		}
+		// Виклик функції на розрахунок ціни
 		calcPrice();
 	});
+	// Функція викликається на самому початку перенесення елемента, що перетягується.
 	const dragStartListener = e => {
 		if (e.target.tagName !== 'IMG') return;
 		if (!e.target.classList.contains('draggable')) return;
@@ -35,22 +40,24 @@ function pizzaListeners() {
 
 		addOrRemoveListeners('add');
 	},
-		dragEndListener = e => {
-			e.target.style.border = '';
-
-
+		// Функція викликається наприкінці події перетягування - як успішного, і скасованого.
+		dragEndListener = () => {
 			addOrRemoveListeners('remove');
 		},
+		// Функція відбувається в момент коли об'єкт, що перетягується, потрапляє в область цільового елемента.
 		dragEnterListener = e => {
 			e.target.style.border = '3px solid gold';
 		},
+		// Функція відбувається коли елемент, що перетягується, залишає область цільового елемента.
 		dragLeaveListener = e => {
 			e.target.style.border = '';
 		},
+		// Функція відбувається коли перетягується елемент перебувати над цільовим елементом.
 		dragOverListener = e => {
 			if (e.preventDefault) e.preventDefault();
 			return false;
 		},
+		// Функція викликається, коли подія перетягування завершується відпусканням елемента над цільовим елементом.
 		dropListener = e => {
 			if (e.preventDefault) e.preventDefault();
 			if (e.stopPropagation) e.stopPropagation();
@@ -70,6 +77,7 @@ function pizzaListeners() {
 
 			return false;
 		},
+		// Функція, що одразу додає або видаляє всі слухачі подій
 		addOrRemoveListeners = (arg) => {
 			switch (arg) {
 				case 'add':
@@ -91,11 +99,12 @@ function pizzaListeners() {
 			}
 		};
 
-
+	// Слухач події на початок перетягування елементу
 	pizzaIngridients.addEventListener('dragstart', dragStartListener, false);
 
 
 }
+// Розрахунок ціни
 function calcPrice(sauceOrTopping) {
 	const pizzaPrice = getSelector('.price__counter');
 	if (typeof sauceOrTopping === 'number') {
@@ -107,6 +116,7 @@ function calcPrice(sauceOrTopping) {
 	let res = calcSize() + sauceOrToppingSum;
 	pizzaPrice.textContent = `${res} грн`;
 }
+// Функція на розрахунок ціни за розміром піци
 function calcSize() {
 	const [...sizeInputs] = document.querySelectorAll('#pizza input');
 
@@ -124,6 +134,7 @@ function calcSize() {
 			break;
 	}
 }
+// Функція, що повертає ціну певного соусу або топінгу
 function calcSauceAndTopping(arg) {
 	if (arg.classList.contains('topping')) {
 		showTopping(arg.alt);
@@ -146,11 +157,42 @@ function calcSauceAndTopping(arg) {
 		}
 	}
 }
+// Функція, що виводить назви доданих начинок користувачу на сайті
 function showTopping(name) {
 	const toppingName = getSelector('.topings');
 	toppingName.insertAdjacentHTML('beforeend', `<p>${name}</p>`);
 }
+// Функція, що виводить назви доданих соусів користувачу на сайті
 function showSauce(name) {
 	const sauceName = getSelector('.sauces');
 	sauceName.insertAdjacentHTML('beforeend', `<p>${name}</p>`);
+}
+
+// Банер от курсора пользователя убегает
+const discount = getSelector('.btn__discount'), discContainer = getSelector('#banner'),
+	right = window.innerWidth - discContainer.offsetWidth, bottom = window.innerHeight - discContainer.offsetHeight;
+
+// Слухач події на наведення курсору по елементу
+discount.addEventListener('mouseover', () => {
+	const prevBottomVal = parseFloat(getComputedStyle(discContainer).bottom), prevRightVal =
+		parseFloat(getComputedStyle(discContainer).right);
+	discContainer.style.bottom = `${getRandomInt(bottom - 90, prevBottomVal)}px`;
+	discContainer.style.right = `${getRandomInt(right, prevRightVal)}px`;
+});
+// Слухач події на клік по знижці
+discount.addEventListener('click', () => {
+	alert('Вітаю! Знижка отримана!');
+	discContainer.style.display = 'none';
+
+
+});
+
+// Функція на випадкові позиції блока 
+// Також виключена можливість появлення блоку поряд з попередніми координатами
+function getRandomInt(maxVal, prevVal) {
+	let res = Math.floor(Math.random() * maxVal);
+	while ((res > prevVal && res < prevVal + 200) || (res < prevVal && res > prevVal - 200)) {
+		res = Math.floor(Math.random() * maxVal);
+	}
+	return res;
 }
