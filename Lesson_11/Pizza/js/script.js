@@ -2,6 +2,7 @@
 /// Користувацька функція для отримання елементу сторінки по id/class/tag.
 const getSelector = arg => document.querySelector(arg), pizzaSize = getSelector('#pizza'),
 	pizzaIngridients = getSelector('.ingridients'), table = getSelector('.table');
+let sauceOrToppingSum = 0;
 
 /*
 Создать сайт по заказу пиццы используя семантическую верстку.
@@ -23,7 +24,7 @@ function pizzaListeners() {
 		if (!e.target.classList.contains('radioIn')) {
 			return;
 		}
-		calcPrice('size');
+		calcPrice();
 	});
 	const dragStartListener = e => {
 		if (e.target.tagName !== 'IMG') return;
@@ -95,20 +96,17 @@ function pizzaListeners() {
 
 
 }
-
-function calcPrice(arg) {
-	let size = 0, sauceAndTopping = 0, res = 0;
-	if (arg === 'size') {
-		size = calcSize();
-	} else if (typeof arg === 'number') {
-		sauceAndTopping += arg;
-	}
-
+function calcPrice(sauceOrTopping) {
 	const pizzaPrice = getSelector('.price__counter');
-	res = size + sauceAndTopping;
+	if (typeof sauceOrTopping === 'number') {
+		sauceOrToppingSum += sauceOrTopping;
+		pizzaPrice.textContent = `${parseFloat(pizzaPrice.textContent) + sauceOrTopping} грн`;
+		return;
+
+	}
+	let res = calcSize() + sauceOrToppingSum;
 	pizzaPrice.textContent = `${res} грн`;
 }
-
 function calcSize() {
 	const [...sizeInputs] = document.querySelectorAll('#pizza input');
 
