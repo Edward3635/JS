@@ -41,7 +41,8 @@ function pizzaListeners() {
 		addOrRemoveListeners('add');
 	},
 		// Функція викликається наприкінці події перетягування - як успішного, і скасованого.
-		dragEndListener = () => {
+		dragEndListener = (e) => {
+			e.target.style.border = '';
 			addOrRemoveListeners('remove');
 		},
 		// Функція відбувається в момент коли об'єкт, що перетягується, потрапляє в область цільового елемента.
@@ -71,6 +72,7 @@ function pizzaListeners() {
 				elem.style.border = '';
 				elem.style.pointerEvents = 'none';
 				const elemClone = elem.cloneNode(true);
+				//elemClone.style.border = '';
 				table.append(elemClone);
 				calcPrice(calcSauceAndTopping(elem));
 			}
@@ -167,6 +169,8 @@ function showSauce(name) {
 	const sauceName = getSelector('.sauces');
 	sauceName.insertAdjacentHTML('beforeend', `<p>${name}</p>`);
 }
+
+
 
 // Банер от курсора пользователя убегает
 const discount = getSelector('.btn__discount'), discContainer = getSelector('#banner'),
