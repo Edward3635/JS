@@ -34,7 +34,7 @@ function pizzaListeners() {
 	const dragStartListener = e => {
 		if (e.target.tagName !== 'IMG') return;
 		if (!e.target.classList.contains('draggable')) return;
-		e.target.style.border = '3px dotted #000';
+		e.target.style.border = '3px dotted green';
 		e.dataTransfer.effectAllowed = 'move';
 		e.dataTransfer.setData('Text', e.target.id);
 
@@ -72,9 +72,9 @@ function pizzaListeners() {
 				elem.style.border = '';
 				elem.style.pointerEvents = 'none';
 				const elemClone = elem.cloneNode(true);
-				//elemClone.style.border = '';
 				table.append(elemClone);
 				calcPrice(calcSauceAndTopping(elem));
+				elem.classList.add('added__element');
 			}
 
 			return false;
@@ -199,4 +199,89 @@ function getRandomInt(maxVal, prevVal) {
 		res = Math.floor(Math.random() * maxVal);
 	}
 	return res;
+}
+
+
+// Валідація input полей
+const gridInputs = getSelector('.grid');
+gridInputs.addEventListener('change', (e) => {
+	if (e.target.tagName !== 'INPUT') return;
+	if (!e.target.classList.contains('input__data')) return;
+	if (e.target.value == '') {
+		e.target.style.border = '4px solid red';
+		return;
+	}
+	if (validate(e.target)) {
+		e.target.style.border = '4px solid green';
+	} else {
+		e.target.style.border = '4px solid red';
+	}
+});
+
+gridInputs.addEventListener('click', (e) => {
+	if (!e.target.classList.contains('button')) return;
+	if (e.target.classList.contains('btn__reset')) {
+		sauceOrToppingSum = 0;
+		calcPrice();
+
+		const [...tableChildren] = table.children;
+		tableChildren.forEach((el, index) => {
+			if (index === 0) return;
+			el.remove();
+		});
+
+		const [...addedElements] = document.querySelectorAll('.added__element');
+		addedElements.forEach(el => {
+			el.classList.remove('added__element');
+			el.style.pointerEvents = '';
+			el.draggable = true;
+		});
+
+		const [...sauces] = getSelector('.sauces').children, [...toppings] = getSelector('.topings').children;
+		sauces.forEach((el, index) => {
+			if (index === 0) return;
+			el.remove();
+		});
+		toppings.forEach((el, index) => {
+			if (index === 0) return;
+			el.remove();
+		});
+		return;
+	}
+	const [...inputData] = document.querySelectorAll('.input__data');
+	if (e.target.classList.contains('btn__submit')) {
+		const validatedData = inputData.map(el => {
+			return validate(el);
+		});
+
+		if (!validatedData.includes(false)) {
+			//send mail
+			window.location = 'thank-you.html';
+		} else {
+			// error
+			inputData.forEach(el => {
+				if (!validate(el)) {
+					el.style.animation = 'shake 300ms';
+					if (el.value === '') {
+						el.style.border = '4px solid red';
+					}
+					setTimeout(() => {
+						el.style.animation = '';
+					}, 300);
+				}
+			});
+
+		}
+		return;
+	}
+});
+
+
+function validate(target) {
+	switch (target.name) {
+		case 'name': return /[А-яіїєёa-z]/i.test(target.value);
+		case 'phone': return /^\+380\d{9}$/i.test(target.value);
+		case 'email': return /\S+@\S+\.\S+/i.test(target.value);
+		default: break;
+	}
 }
