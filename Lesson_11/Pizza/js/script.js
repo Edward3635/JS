@@ -1,4 +1,4 @@
-// Оголошення змінних та стрілкових функцій. 1
+// Оголошення змінних та стрілкових функцій.2
 /// Користувацька функція для отримання елементу сторінки по id/class/tag.
 const getSelector = arg => document.querySelector(arg), pizzaSize = getSelector('#pizza'),
 	pizzaIngridients = getSelector('.ingridients'), table = getSelector('.table');
@@ -218,8 +218,7 @@ gridInputs.addEventListener('change', (e) => {
 	}
 });
 
-gridInputs.addEventListener('click', formSend);
-async function formSend(e) {
+gridInputs.addEventListener('click', (e) => {
 	if (!e.target.classList.contains('button')) return;
 	if (e.target.classList.contains('btn__reset')) {
 		sauceOrToppingSum = 0;
@@ -259,12 +258,12 @@ async function formSend(e) {
 			//send mail
 			//window.location = 'thank-you.html';
 			const form = getSelector('form');
-			let formData = new FormData(form), response = await fetch('sendmail.php', {
+			let formData = new FormData(form), response = fetch('sendmail.php', {
 				method: 'POST',
 				body: formData
 			});
 			if (response.ok) {
-				let result = await response.json();
+				let result = response.json();
 				alert(result.message);
 				//formPreview.innerHTML=  '';
 				form.reset();
@@ -287,7 +286,7 @@ async function formSend(e) {
 		}
 		return;
 	}
-}
+});
 
 
 function validate(target) {
