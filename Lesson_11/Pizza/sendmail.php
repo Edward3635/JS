@@ -60,7 +60,7 @@ if(mail('Edgard3635@gmail.com',
 	'Name: ',
 	'From: no-reply@mydomain.ru \r\n')
 ) {
-	
+	echo('Ok');
 } else {
 	echo('Error');
 }
