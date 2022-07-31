@@ -55,10 +55,9 @@ $name = trim($name);
 $phone = trim($phone);
 $email = trim($email);
 
-if(mail('Edgard3635@gmail.com',
+if(mail('edgard3635@gmail.com',
 	'New message from site',
-	'Name: ',
-	'From: no-reply@mydomain.ru \r\n')
+	'From: no-reply@gmail.com \r\n')
 ) {
 	echo('Ok');
 } else {
