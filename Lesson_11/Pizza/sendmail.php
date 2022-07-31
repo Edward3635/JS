@@ -39,29 +39,29 @@
 // header('Content-type: application/json');
 // echo json_encode($response);
 
-$name = $_POST['name'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
 
-$name = htmlspecialchars($name);
-$phone = htmlspecialchars($phone);
-$email = htmlspecialchars($email);
+// ------------------------
+// $name = $_POST['name'];
+// $phone = $_POST['phone'];
+// $email = $_POST['email'];
 
-$name = urldecode($name);
-$phone = urldecode($phone);
-$email = urldecode($email);
+// $name = htmlspecialchars($name);
+// $phone = htmlspecialchars($phone);
+// $email = htmlspecialchars($email);
 
-$name = trim($name);
-$phone = trim($phone);
-$email = trim($email);
+// $name = urldecode($name);
+// $phone = urldecode($phone);
+// $email = urldecode($email);
 
-if(mail('edgard3635@gmail.com',
-	'New message from site',
-	'From: no-reply@gmail.com \r\n')
-) {
-	echo('Ok');
-} else {
-	echo('Error');
-}
+// $name = trim($name);
+// $phone = trim($phone);
+// $email = trim($email);
 
-?>
+// if(mail('edgard3635@gmail.com',
+// 	'New message from site',
+// 	'From: no-reply@gmail.com \r\n')
+// ) {
+// 	echo('Ok');
+// } else {
+// 	echo('Error');
+// }
