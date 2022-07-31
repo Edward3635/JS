@@ -257,7 +257,7 @@ gridInputs.addEventListener('click', (e) => {
 		if (!validatedData.includes(false)) {
 			//send mail
 			getSelector('form').submit();
-			window.location = 'thank-you.html';
+			//window.location = 'thank-you.html';
 		} else {
 			// error
 			inputData.forEach(el => {
