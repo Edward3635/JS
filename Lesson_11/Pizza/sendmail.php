@@ -66,3 +66,4 @@ if (mail(
 } else {
 	echo ('Error');
 }
+?>
