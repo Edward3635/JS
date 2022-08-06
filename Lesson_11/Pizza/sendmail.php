@@ -121,17 +121,25 @@ $topping = trim($topping);
 $price = trim($price);
 
 $message = "
+Вітаємо!
+Замовлення з сайту Domino's Pizza
 Name: $name;
 E-mail: $email;
-Phone: $phone;
+Phone: +$phone;
 Розмір піци: $pizzaSize;
 Соуси: $sauce;
 Начинка: $topping;
-Ціна: $price;";
+Ціна: $price;
+Цей лист сформовано автоматично і не потребує відповіді.
+Ми отримали ваше замовлення і його почнуть виконувати найближчим часом.
+З повагою, студент JS без підтримки. 
+Dominos Pizza-project(Конструктор піци, Drag-n-Drop, відправка замовлення-форми на пошту).
+
+P.S. проект https://edward3635.github.io/JS/Lesson_11/Pizza/index.html
+Але на цьому безкоштовному хостингу не підтримується відправка пошти, був використаний локальний Open Server для відправки цього повідомлення.";
 
 mail(
-	"edgard3635@gmail.com",
-	"Заявка с сайта",
-	$message,
-	"From: edgard3635@gmail.com \r\n"
+	$email,
+	"Замовлення піци",
+	$message
 );
