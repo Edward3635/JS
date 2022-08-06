@@ -18,15 +18,15 @@
 // $body = '<h1>Зустрічай супер листа!</h1>';
 
 // if (trim(!empty($_POST['name']))) {
-// 	$body .= "<p><strong>Ім'я:</strong> " . $_POST['name'] . '</p>';
+// 	$body.= "<p><strong>Ім'я:</strong> " .$_POST['name'] . '</p>';
 // }
 
 // if (trim(!empty($_POST['email']))) {
-// 	$body .= "<p><strong>E-mail:</strong> " . $_POST['email'] . '</p>';
+// 	$body.= "<p><strong>E-mail:</strong> " .$_POST['email'] . '</p>';
 // }
 
 // if (trim(!empty($_POST['phone']))) {
-// 	$body .= "<p><strong>Phone:</strong> " . $_POST['phone'] . '</p>';
+// 	$body.= "<p><strong>Phone:</strong> " .$_POST['phone'] . '</p>';
 // }
 
 // if (!$mail->send()) {
@@ -41,29 +41,97 @@
 
 
 
+
+
+// $name = $_POST['name'];
+// $phone = $_POST['phone'];
+// $email = $_POST['email'];
+
+// $name = htmlspecialchars($name);
+// $phone = htmlspecialchars($phone);
+// $email = htmlspecialchars($email);
+
+// $name = urldecode($name);
+// $phone = urldecode($phone);
+// $email = urldecode($email);
+
+// $name = trim($name);
+// $phone = trim($phone);
+// $email = trim($email);
+
+// if (mail(
+// 	'edgard3635@gmail.com',
+// 	'New message from site',
+// 	'From: no-reply@gmail.com \r\n'
+// )) {
+// 	header('location:thank-you.html');
+// }
+
+
+
+// $name = $_POST['name'];
+// $phone = $_POST['phone'];
+// $email = $_POST['email'];
+
+// $to = "edgard3635@gmail.com"; 
+// $date = date ("d.m.Y"); 
+// $time = date ("h:i");
+// $from = $email;
+// $subject = "Заявка c сайта";
+
+
+// $msg="
+// Имя: $name /n
+// Телефон: $phone /n
+// Почта: $email";
+// //Текст: $text"; 	
+// mail($to, $subject, $msg, "From: $from ");
+
+
 $name = $_POST['name'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
+$pizzaSize = $_POST['pizzaSize'];
+$sauce = $_POST['sauce'];
+$topping = $_POST['topping'];
+$price = $_POST['price'];
 
 $name = htmlspecialchars($name);
 $phone = htmlspecialchars($phone);
 $email = htmlspecialchars($email);
+$pizzaSize = htmlspecialchars($pizzaSize);
+$sauce = htmlspecialchars($sauce);
+$topping = htmlspecialchars($topping);
+$price = htmlspecialchars($price);
 
 $name = urldecode($name);
 $phone = urldecode($phone);
 $email = urldecode($email);
+$pizzaSize = urldecode($pizzaSize);
+$sauce = urldecode($sauce);
+$topping = urldecode($topping);
+$price = urldecode($price);
 
 $name = trim($name);
 $phone = trim($phone);
 $email = trim($email);
+$pizzaSize = trim($pizzaSize);
+$sauce = trim($sauce);
+$topping = trim($topping);
+$price = trim($price);
 
-if (mail(
-	'edgard3635@gmail.com',
-	'New message from site',
-	'From: no-reply@gmail.com \r\n'
-)) {
-	echo ('Ok');
-} else {
-	echo ('Error');
-}
-?>
+$message = "
+Name: $name;
+E-mail: $email;
+Phone: $phone;
+Розмір піци: $pizzaSize;
+Соуси: $sauce;
+Начинка: $topping;
+Ціна: $price;";
+
+mail(
+	"edgard3635@gmail.com",
+	"Заявка с сайта",
+	$message,
+	"From: edgard3635@gmail.com \r\n"
+);

@@ -14,7 +14,7 @@ data.then(response => response.json(), err => console.error(err))
 	.then(res => readArr(res.results));
 function readArr(arr) {
 	arr.forEach((el, index) => {
-		//const { name, height, skin_color, birth_year, gender, homeworld } = el;
+		//const { name, height, skin	_color, birth_year, gender, homeworld } = el;
 		const arr = ['name', 'height', 'skin_color', 'birth_year', 'gender', 'homeworld'];
 		for (let key in el) {
 			if (arr.includes(key)) {

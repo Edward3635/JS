@@ -4,6 +4,7 @@ const getSelector = arg => document.querySelector(arg), pizzaSize = getSelector(
 	pizzaIngridients = getSelector('.ingridients'), table = getSelector('.table');
 let sauceOrToppingSum = 0;
 
+
 /*
 Создать сайт по заказу пиццы используя семантическую верстку.
 На сайте должна быть возможность сделать пиццу самому.
@@ -119,7 +120,7 @@ function calcPrice(sauceOrTopping) {
 	pizzaPrice.textContent = `${res} грн`;
 }
 // Функція на розрахунок ціни за розміром піци
-function calcSize() {
+function calcSize(size) {
 	const [...sizeInputs] = document.querySelectorAll('#pizza input');
 
 	const [pizzaSize] = sizeInputs.filter(el => {
@@ -127,6 +128,7 @@ function calcSize() {
 			return el;
 		}
 	});
+	if (size === 'size') return pizzaSize.value;
 	switch (pizzaSize.value) {
 		case 'small': return 80;
 		case 'mid': return 100;
@@ -218,7 +220,9 @@ gridInputs.addEventListener('change', (e) => {
 	}
 });
 
-gridInputs.addEventListener('click', (e) => {
+gridInputs.addEventListener('click', formSend);
+
+async function formSend(e) {
 	if (!e.target.classList.contains('button')) return;
 	if (e.target.classList.contains('btn__reset')) {
 		sauceOrToppingSum = 0;
@@ -256,8 +260,18 @@ gridInputs.addEventListener('click', (e) => {
 
 		if (!validatedData.includes(false)) {
 			//send mail
-			getSelector('form').submit();
-			//window.location = 'thank-you.html';
+			const form = getSelector('footer form');
+			let formData = new FormData(form);
+			formData.append('pizzaSize', calcSize('size'));
+			formData.append('sauce', getIngredientsList('sauces').join(', '));
+			formData.append('topping', getIngredientsList('topings').join(', '));
+			formData.append('price', getSelector('.price__counter').textContent);
+			let response = await fetch('sendmail.php', { method: 'GET', body: formData });
+			if (response.ok) {
+				window.location = 'thank-you.html';
+			} else {
+				alert('Серверна помилка!');
+			}
 		} else {
 			// error
 			inputData.forEach(el => {
@@ -275,8 +289,19 @@ gridInputs.addEventListener('click', (e) => {
 		}
 		return;
 	}
-});
+}
 
+function getIngredientsList(ingredientType) {
+	// аргументи sauces або topings
+	const [...arr] = getSelector(`.${ingredientType}`).children;
+	let ingredientList = [];
+	arr.forEach((el, index) => {
+		if (index === 0) return;
+		ingredientList.push(el.textContent);
+	});
+	return ingredientList;
+
+}
 
 function validate(target) {
 	switch (target.name) {
