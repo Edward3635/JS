@@ -1,4 +1,4 @@
-//111111
+//0000
 // Оголошення змінних та стрілкових функцій.
 /// Користувацька функція для отримання елементу сторінки по id/class/tag.
 const getSelector = arg => document.querySelector(arg), pizzaSize = getSelector('#pizza'),
@@ -267,7 +267,7 @@ async function formSend(e) {
 			formData.append('sauce', getIngredientsList('sauces').join(', '));
 			formData.append('topping', getIngredientsList('topings').join(', '));
 			formData.append('price', getSelector('.price__counter').textContent);
-			let response = await fetch('sendmail.php', { method: 'GET', body: formData });
+			let response = await fetch('sendmail.php', { method: 'POST', body: formData });
 			if (response.ok) {
 				window.location = 'thank-you.html';
 			} else {
