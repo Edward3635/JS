@@ -64,10 +64,23 @@ console.log([1, 2, 4, 5].arrayMul(4));
 чтобы они не повторялись, пока не будут перебраны все числа из этого промежутка.
 Решите задачу через замыкания - в замыкании должен хранится массив чисел, которые уже были сгенерированы функцией.
 */
-
+const usedNumbers = [];
 function randomNum() {
-	
+	function funcInner() {
+		if (usedNumbers.length == 100) usedNumbers.splice(0);
+		let i = Math.floor(Math.random() * 100) + 1;
+		const result = usedNumbers.includes(i) ? funcInner() : (usedNumbers.push(i), i);
+		return result;
+	}
+	return funcInner();
+
 }
+console.log(randomNum());
+console.log(randomNum());
+console.log(randomNum());
+
+
+
 
 /*
 Добавить на сайт по заказу пиццы слайдер состоящий их 3-х картинок, которые находятся в папке img.
