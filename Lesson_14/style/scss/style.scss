@@ -5,5 +5,19 @@ html {
 }
 
 body {
-	background-color: #745d49;
+	background-color: #d73636;
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 35px 0;
+}
+
+.main {
+	&__content {
+		padding: 30px;
+		background-color: #ffdab9;
+		border-radius: 40px;
+	}
 }
