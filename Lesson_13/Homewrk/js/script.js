@@ -14,7 +14,6 @@ data.then(response => response.json(), err => console.error(err))
 	.then(res => readArr(res.results));
 function readArr(arr) {
 	arr.forEach((el, index) => {
-		//const { name, height, skin	_color, birth_year, gender, homeworld } = el;
 		const arr = ['name', 'height', 'skin_color', 'birth_year', 'gender', 'homeworld'];
 		for (let key in el) {
 			if (arr.includes(key)) {
@@ -23,9 +22,6 @@ function readArr(arr) {
 			}
 		}
 		ul[index].insertAdjacentHTML('beforeend', `<li><button class="btn__save">Save</button></li>`);
-		// ul[index].insertAdjacentHTML('beforeend',
-		// 	`<li>Name: ${name} </li><li>Gender: ${gender}</li><li>Height: ${height}cm</li><li>Skin color: ${skin_color}</li>` +
-		// 	`<li>Birthday: ${birth_year}</li> <li>Homeworld: '${homeworld}'</li> <li><button class="btn__save">Save</button></li>`);
 	});
 	const mainCards = getSelector('.main__cards');
 	mainCards.addEventListener('click', (e) => {
