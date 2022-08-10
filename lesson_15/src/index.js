@@ -13,8 +13,56 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const App = function () {
 	return (
+		<div className='flex__block'>
+			<ZodiacSigns></ZodiacSigns>
+			<DaysOfTheWeek></DaysOfTheWeek>
+			<Months></Months>
+		</div>
+	)
+}, ZodiacSigns = function () {
+	return (
 		<div>
-			<Title></Title>
+			<h2>Zodiac signs</h2>
+			<ul>
+				<li>Ram</li>
+				<li>Bull</li>
+				<li>Twins</li>
+				<li>Crab</li>
+				<li>Lion</li>
+				<li>Virgin</li>
+				<li>Balance</li>
+				<li>Scorpion</li>
+				<li>Archer</li>
+				<li>Goat</li>
+				<li>Water Bearer</li>
+				<li>Fish</li>
+			</ul>
+		</div>
+	);
+}, Months = function () {
+	return (
+		<div>
+			<h2>Months</h2>
+			<ul>
+				<li>January</li>
+				<li>February</li>
+				<li>March</li>
+				<li>April</li>
+				<li>May</li>
+				<li>June</li>
+				<li>July</li>
+				<li>August</li>
+				<li>September</li>
+				<li>October</li>
+				<li>November</li>
+				<li>December</li>
+			</ul>
+		</div>
+	);
+}, DaysOfTheWeek = function () {
+	return (
+		<div>
+			<h2>Days of the week</h2>
 			<ul>
 				<li>Monday</li>
 				<li>Tuesday</li>
@@ -25,8 +73,6 @@ const App = function () {
 				<li>Sunday</li>
 			</ul>
 		</div>
-	)
-}, Title = function () {
-	return <h2>Дні тижня</h2>
-}
+	);
+};
 root.render(<App></App>);

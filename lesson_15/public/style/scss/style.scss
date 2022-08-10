@@ -1,0 +1,27 @@
+@import "./reset";
+
+body {
+	background: url("../../img/bg.jpg") no-repeat;
+	background-size: cover;
+}
+
+h2 {
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.flex__block {
+	font-size: 1.6rem;
+	display: flex;
+	justify-content: space-between;
+	max-width: 70%;
+	margin: 0 auto;
+	color: #000;
+	padding-top: 50px;
+	li {
+		padding: 5px;
+	}
+	> div {
+		text-align: center;
+	}
+}
