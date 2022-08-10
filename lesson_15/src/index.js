@@ -12,6 +12,21 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //let text1 = <h1 className="myClass">Hello world!</h1>
 
 const App = function () {
-	return <h1 className="myClass">Hello world!</h1>
+	return (
+		<div>
+			<Title></Title>
+			<ul>
+				<li>Monday</li>
+				<li>Tuesday</li>
+				<li>Wednesday</li>
+				<li>Thursday</li>
+				<li>Friday</li>
+				<li>Saturday</li>
+				<li>Sunday</li>
+			</ul>
+		</div>
+	)
+}, Title = function () {
+	return <h2>Дні тижня</h2>
 }
 root.render(<App></App>);
