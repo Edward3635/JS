@@ -413,7 +413,31 @@ p
 }
 .slider .nav span.on
 {
-    background: #2e9419;
+    background: rgb(107, 101, 101);
+}
+
+.slider__next,
+.slider__prev {
+	position: absolute;
+	background: none;
+	top: 0;
+	bottom: 0;
+	padding: 0 8px;
+	width: fit-content;
+	color: #000;
+	opacity: 0.7;
+	font-size: 40px;
+	border: none;
+}
+.slider__prev:hover,.slider__next:hover  {
+		opacity: 1;
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+.slider__prev {
+	left: 0;
+}
+.slider__next {
+	right: 0;
 }
 
 footer

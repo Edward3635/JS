@@ -323,11 +323,11 @@ function validate(target) {
 $(document).ready(function () {
 	$('.slider').each(function () {
 
-		var repeats = 5, // кількість повторювань автоматичного прокручування
-			interval = 4, // інтервал в секундах
-			repeat = false, // чи треба автоматично прокручувати (true/false)
+		let //repeats = 5, // кількість повторювань автоматичного прокручування
+			interval = 15, // інтервал в секундах
+			repeat = true, // чи треба автоматично прокручувати (true/false)
 			slider = $(this),
-			repeatCount = 0,
+			//repeatCount = 0,
 			elements = $(slider).find('li').length;
 
 		$(slider)
@@ -343,16 +343,16 @@ $(document).ready(function () {
 
 		if (repeat) {
 			repeat = setInterval(function () {
-				if (repeatCount >= repeats - 1) {
-					window.clearInterval(repeat);
-				}
+				// if (repeatCount >= repeats - 1) {
+				// 	window.clearInterval(repeat);
+				// }
 
-				var index = $(slider).find('.on').data('slide'),
+				let index = $(slider).find('.on').data('slide'),
 					nextIndex = index + 1 < elements ? index + 1 : 0;
 
 				sliderJS(nextIndex, slider);
 
-				repeatCount += 1;
+				//repeatCount += 1;
 			}, interval * 1000);
 		}
 
@@ -360,7 +360,7 @@ $(document).ready(function () {
 });
 
 function sliderJS(index, slider) { // slide
-	var ul = $(slider).find('ul'),
+	let ul = $(slider).find('ul'),
 		bl = $(slider).find('li[data-slide=' + index + ']'),
 		step = $(bl).width();
 
@@ -376,8 +376,26 @@ function sliderJS(index, slider) { // slide
 
 $(document).on('click', '.slider .nav span', function (e) { // slider click navigate
 	e.preventDefault();
-	var slider = $(this).closest('.slider'),
+	let slider = $(this).closest('.slider'),
 		index = $(this).data('slide');
 
+	sliderJS(index, slider);
+});
+
+$(document).on('click', '.slider__prev', function () { // slider click navigate
+	let slider = $(this).closest('.slider'),
+		index = $('.nav').find('.on').data('slide') - 1;
+	if (index === -1) {
+		index = $('.nav').children().length - 1; // індекс останньої картинки
+	}
+	sliderJS(index, slider);
+});
+
+$(document).on('click', '.slider__next', function () { // slider click navigate
+	let slider = $(this).closest('.slider'),
+		index = $('.nav').find('.on').data('slide') + 1;
+	if (index === $('.nav').children().length) {
+		index = 0;
+	}
 	sliderJS(index, slider);
 });
