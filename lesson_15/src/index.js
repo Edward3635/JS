@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './style/css/style.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Створення елементу на чистому JS
