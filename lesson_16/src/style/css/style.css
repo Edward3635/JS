@@ -71,9 +71,40 @@ h1, h2, h3, h4, h5, h6 {
 body {
   background: url("../../img/bg.jpg") no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+}
+
+#root {
+  padding: 65px 0 50px 40px;
+  max-width: fit-content;
+}
+
+#root > h1 {
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 h1 {
   font-weight: 600;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
+}
+
+.grid__table {
+  display: flex;
+  justify-content: center;
+  border: 4px solid gray;
+}
+
+.grid__table > div {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.grid__table > div:not(:last-child) {
+  border-right: 4px solid gray;
+}
+
+.grid__table > div > div:not(:last-child) {
+  border-bottom: 4px solid gray;
+  padding: 0 10px;
 }
