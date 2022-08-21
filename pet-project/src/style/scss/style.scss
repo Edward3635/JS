@@ -1,6 +1,46 @@
 @import "./reset";
 
 body {
-	background: url("../../img/bg.jpg") no-repeat;
+	background-color: #492e33;
 	background-size: cover;
+}
+.app-wrapper {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.header {
+	background-color: rgba(153, 76, 9, 0.705);
+	margin-bottom: 10px;
+	.img__logo {
+		padding-left: 10px;
+	}
+}
+.main {
+	display: grid;
+	grid-template-areas: "navigation content";
+	grid-template-rows: 1fr;
+	grid-template-columns: 2fr 10fr;
+	gap: 10px;
+	font-size: 1.5rem;
+	&__nav {
+		grid-area: navigation;
+		background-color: green;
+		li {
+			> a {
+				color: #000;
+			}
+		}
+	}
+	&__content {
+		grid-area: content;
+		background-color: gray;
+	}
+
+	.profile__banner {
+		img {
+			width: 100%;
+			height: 200px;
+		}
+	}
 }
