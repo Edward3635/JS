@@ -69,6 +69,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background: url("../../img/bg.jpg") no-repeat;
+  background-color: #492e33;
   background-size: cover;
+}
+
+.app-wrapper {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.header {
+  background-color: rgba(153, 76, 9, 0.705);
+  margin-bottom: 10px;
+}
+
+.header .img__logo {
+  padding-left: 10px;
+}
+
+.main {
+  display: grid;
+  grid-template-areas: "navigation content";
+  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 10fr;
+  gap: 10px;
+  font-size: 1.5rem;
+}
+
+.main__nav {
+  grid-area: navigation;
+  background-color: green;
+}
+
+.main__nav li > a {
+  color: #000;
+}
+
+.main__content {
+  grid-area: content;
+  background-color: gray;
+}
+
+.main .profile__banner img {
+  width: 100%;
+  height: 200px;
 }
