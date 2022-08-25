@@ -1,8 +1,10 @@
 @import "./reset";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;1,500&display=swap");
 
 body {
-	background-color: #492e33;
+	background-color: #e5e5e5;
 	background-size: cover;
+	font-family: "Work Sans", sans-serif;
 }
 .app-wrapper {
 	margin: 0 auto;
@@ -10,10 +12,54 @@ body {
 }
 
 .header {
-	background-color: rgba(153, 76, 9, 0.705);
+	background-color: #f2f8fd;
 	margin-bottom: 10px;
+	.flex__logo-input {
+		display: grid;
+		grid-template-columns: 2fr 10fr;
+		gap: 10px;
+		align-items: center;
+	}
 	.img__logo {
 		padding-left: 10px;
+	}
+	.flex-form input[type="submit"] {
+		border-radius: 0 1px 10px 0;
+		background: #ef3f5a;
+		border: 1px solid #ef3f5a;
+		color: #fff;
+		padding: 0 30px;
+		cursor: pointer;
+		-webkit-transition: all 0.2s;
+		-moz-transition: all 0.2s;
+		transition: all 0.2s;
+	}
+
+	.flex-form input[type="submit"]:hover {
+		background: #d73851;
+		border: 1px solid #d73851;
+	}
+
+	.flex-form {
+		border-radius: 10px;
+		display: -webkit-box;
+		height: 37px;
+		display: flex;
+		position: relative;
+		width: 400px;
+		box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3);
+	}
+
+	.flex-form > * {
+		padding: 0 0 0 10px;
+		background: #fff;
+		font-size: 1rem;
+		-webkit-appearance: none;
+	}
+
+	input[type="search"] {
+		flex-basis: 500px;
+		border-radius: 10px 0 0 1px;
 	}
 }
 .main {
@@ -25,22 +71,63 @@ body {
 	font-size: 1.5rem;
 	&__nav {
 		grid-area: navigation;
-		background-color: green;
+		background-color: #f2f8fd;
+		> ul {
+			padding: 10px 0;
+			text-align: center;
+			> li {
+				padding: 5px 0;
+			}
+		}
 		li {
 			> a {
-				color: #000;
+				color: #18333e;
+				font-weight: 500;
+				transition: all 0.4s;
+				&.active {
+					color: #f9d44a;
+					transition: all 0.4s;
+					font-size: 1.6rem;
+				}
 			}
 		}
 	}
 	&__content {
 		grid-area: content;
-		background-color: gray;
+		background-color: rgb(203, 196, 196);
 	}
-
-	.profile__banner {
-		img {
-			width: 100%;
-			height: 200px;
+	.section__profile {
+		.profile__banner {
+			img {
+				width: 100%;
+				height: 200px;
+			}
+		}
+		.profile__content {
+			padding-top: 5px;
+			padding-left: 10px;
+		}
+		.my__posts {
+			.post__buttons {
+				.btn__add-post {
+					margin-right: 10px;
+				}
+			}
+			.post {
+				> img {
+					max-width: 5%;
+					height: 40px;
+					border-radius: 50px;
+				}
+			}
+		}
+	}
+	.section__messages {
+		display: grid;
+		grid-template-columns: 3fr 9fr;
+		.dialogs,
+		.messages {
+			padding: 10px;
 		}
 	}
 }
