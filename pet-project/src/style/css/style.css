@@ -133,6 +133,10 @@ body {
   border-radius: 10px 0 0 1px;
 }
 
+.header input[type="search"]:focus::placeholder {
+  color: #fff;
+}
+
 .main {
   display: grid;
   grid-template-areas: "navigation content";
@@ -183,8 +187,14 @@ body {
   padding-left: 10px;
 }
 
+.main .section__profile .my__posts > h3 {
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
 .main .section__profile .my__posts .post__buttons .btn__add-post {
   margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 .main .section__profile .my__posts .post > img {
@@ -201,4 +211,9 @@ body {
 .main .section__messages .dialogs,
 .main .section__messages .messages {
   padding: 10px;
+}
+
+.main .section__messages .dialog {
+  display: block;
+  color: #000;
 }

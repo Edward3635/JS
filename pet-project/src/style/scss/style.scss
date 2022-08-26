@@ -60,6 +60,9 @@ body {
 	input[type="search"] {
 		flex-basis: 500px;
 		border-radius: 10px 0 0 1px;
+		&:focus::placeholder {
+			color: #fff;
+		}
 	}
 }
 .main {
@@ -108,9 +111,14 @@ body {
 			padding-left: 10px;
 		}
 		.my__posts {
+			> h3 {
+				padding-top: 10px;
+				margin-bottom: 10px;
+			}
 			.post__buttons {
 				.btn__add-post {
 					margin-right: 10px;
+					margin-bottom: 20px;
 				}
 			}
 			.post {
@@ -128,6 +136,10 @@ body {
 		.dialogs,
 		.messages {
 			padding: 10px;
+		}
+		.dialog {
+			display: block;
+			color: #000;
 		}
 	}
 }
